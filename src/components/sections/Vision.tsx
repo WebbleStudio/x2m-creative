@@ -1,6 +1,6 @@
 "use client"; // This component will manage state and interactions
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion'; // Import motion
 import VisionCard from '../ui/VisionCard'; // Assuming VisionCard is in a subfolder
 

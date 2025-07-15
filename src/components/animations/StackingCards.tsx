@@ -19,7 +19,7 @@ interface StackingCardsProps {
 
 export default function StackingCards({ cards, height = "250px", heightClass }: StackingCardsProps) {
   const [currentCards, setCurrentCards] = useState(cards);
-  const [currentIndex, setCurrentIndex] = useState(0); // Per indicare quale card è al centro
+  const [, ] = useState(0); // Per indicare quale card è al centro
 
   const handleCardClick = () => {
     setCurrentCards(prevCards => {

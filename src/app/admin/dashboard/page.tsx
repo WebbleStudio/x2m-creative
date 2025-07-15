@@ -26,7 +26,7 @@ export default function DashboardPage() {
 }
 
 function DashboardContent() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   const [progetti, setProgetti] = useState<Progetto[]>([]);
   const [loading, setLoading] = useState(true);

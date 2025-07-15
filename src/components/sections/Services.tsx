@@ -52,7 +52,7 @@ export default function Services() {
               Advertisement
             </h2>
             <p className="font-raleway font-medium text-[15px] lg:text-[18px] text-[#0c0c0c] max-w-2xl">
-              Massimizziamo l'impatto del tuo brand con campagne pubblicitarie strategiche e mirate. Dalla creatività al risultato, ogni annuncio è progettato per far crescere il tuo business.
+              Massimizziamo l&apos;impatto del tuo brand con campagne pubblicitarie strategiche e mirate. Dalla creatività al risultato, ogni annuncio è progettato per far crescere il tuo business.
             </p>
           </div>
           

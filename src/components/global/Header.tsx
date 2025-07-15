@@ -3,7 +3,7 @@
 import Image from "next/image"; // Import the Next.js Image component
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Link as ScrollLink, animateScroll } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
 import { useScrollEffect } from "@/components/animations/useScrollEffect"; // Import the custom hook
 import { useState, useEffect } from "react";
 
@@ -38,7 +38,7 @@ export default function Header() {
     };
   }, [isMobileMenuOpen, isClient]);
 
-  const handleNavigation = (to: string, label: string) => {
+  const handleNavigation = (to: string, _?: string) => {
     // Close mobile menu first
     setIsMobileMenuOpen(false);
     
