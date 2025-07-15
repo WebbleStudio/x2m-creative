@@ -12,8 +12,14 @@ interface Progetto {
 }
 
 async function getProgettiInEvidenza(): Promise<Progetto[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001'; // Porta aggiornata
-  const res = await fetch(`${baseUrl}/api/progetti`, { cache: 'no-store' });
+  // Su Vercel, usa URL assoluto. In locale, usa relativo
+  const apiUrl = process.env.VERCEL_ENV 
+    ? 'https://x2m-creative.vercel.app/api/progetti'
+    : (process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000');
+    
+  const res = await fetch(`${apiUrl}${apiUrl.includes('/api/progetti') ? '' : '/api/progetti'}`, { 
+    cache: 'no-store' 
+  });
   if (!res.ok) return [];
   const progetti = await res.json();
   return progetti.filter((p: Progetto) => p.inEvidenza).slice(0, 3);

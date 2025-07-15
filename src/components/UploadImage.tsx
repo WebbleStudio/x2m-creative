@@ -31,7 +31,13 @@ export default function UploadImage({ onUpload }: Props) {
     setError("");
     const formData = new FormData();
     formData.append("file", file);
-    const res = await fetch("/api/upload", {
+    
+    // Su Vercel, usa URL assoluto. In locale, usa relativo
+    const apiUrl = process.env.VERCEL_ENV 
+      ? 'https://x2m-creative.vercel.app/api/upload'
+      : '/api/upload';
+      
+    const res = await fetch(apiUrl, {
       method: "POST",
       body: formData,
     });

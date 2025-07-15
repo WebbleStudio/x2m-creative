@@ -25,6 +25,14 @@ export default function DashboardPage() {
   );
 }
 
+// Helper function per ottenere l'URL API corretto
+function getApiUrl(endpoint: string) {
+  if (process.env.VERCEL_ENV) {
+    return `https://x2m-creative.vercel.app${endpoint}`;
+  }
+  return endpoint;
+}
+
 function DashboardContent() {
   const { status } = useSession();
   const router = useRouter();
@@ -61,7 +69,7 @@ function DashboardContent() {
 
   async function fetchProgetti() {
     setLoading(true);
-    const res = await fetch("/api/progetti");
+    const res = await fetch(getApiUrl("/api/progetti"));
     const data = await res.json();
     setProgetti(data);
     setLoading(false);
@@ -75,7 +83,7 @@ function DashboardContent() {
       setError("Tutti i campi sono obbligatori");
       return;
     }
-    const res = await fetch("/api/progetti", {
+    const res = await fetch(getApiUrl("/api/progetti"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ titolo, descrizione, immagine, link }),
@@ -101,7 +109,7 @@ function DashboardContent() {
       setTimeout(() => setError(""), 3000);
       return;
     }
-    await fetch(`/api/progetti/${id}`, {
+    await fetch(getApiUrl(`/api/progetti/${id}`), {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ [field]: value }),
@@ -132,7 +140,7 @@ function DashboardContent() {
       setError("Tutti i campi sono obbligatori");
       return;
     }
-    const res = await fetch(`/api/progetti/${id}`, {
+    const res = await fetch(getApiUrl(`/api/progetti/${id}`), {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ titolo: editTitolo, descrizione: editDescrizione, immagine: editImmagine, link: editLink }),
@@ -149,7 +157,7 @@ function DashboardContent() {
 
   async function handleDelete(id: string) {
     if (!window.confirm("Sei sicuro di voler eliminare questo progetto?")) return;
-    await fetch(`/api/progetti/${id}`, { method: "DELETE" });
+    await fetch(getApiUrl(`/api/progetti/${id}`), { method: "DELETE" });
     setSuccess("Progetto eliminato con successo!");
     setTimeout(() => setSuccess(""), 3000);
     fetchProgetti();

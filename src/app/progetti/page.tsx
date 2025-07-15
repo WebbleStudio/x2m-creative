@@ -13,14 +13,28 @@ interface Progetto {
 }
 
 function getBaseUrl() {
+  // Se siamo in produzione, usa l'URL hardcoded
+  if (process.env.VERCEL_ENV === 'production') {
+    return 'https://x2m-creative.vercel.app';
+  }
+  
+  // Se abbiamo NEXT_PUBLIC_BASE_URL, usalo
   if (process.env.NEXT_PUBLIC_BASE_URL) return process.env.NEXT_PUBLIC_BASE_URL;
+  
+  // Se abbiamo VERCEL_URL, usalo
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return "http://localhost:3000"; // Cambia la porta se usi una diversa in dev
+  
+  // Fallback per sviluppo locale
+  return "http://localhost:3000";
 }
 
 async function getProgetti(): Promise<Progetto[]> {
-  const baseUrl = getBaseUrl();
-  const res = await fetch(`${baseUrl}/api/progetti`, { cache: "no-store" });
+  // Su Vercel, usa URL assoluto. In locale, usa relativo
+  const apiUrl = process.env.VERCEL_ENV 
+    ? `https://x2m-creative.vercel.app/api/progetti`
+    : `${getBaseUrl()}/api/progetti`;
+    
+  const res = await fetch(apiUrl, { cache: "no-store" });
   if (!res.ok) return [];
   return res.json();
 }
