@@ -1,26 +1,49 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Degular Display';
+  src: url('/fonts/degular-display/DegularDisplay-Regular.otf') format('opentype');
+  font-weight: 400; /* normal */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Degular Display'; /* Same family name */
+  src: url('/fonts/degular-display/DegularDisplay-Semibold.otf') format('opentype');
+  font-weight: 600; /* semibold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sprat';
+  src: url('/fonts/sprat/Sprat-Regular.otf') format('opentype');
+  font-weight: 400; /* normal */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sprat'; /* Same family name */
+  src: url('/fonts/sprat/Sprat-Medium.otf') format('opentype');
+  font-weight: 500; /* medium */
+  font-style: normal;
+}
+
+/* @font-face for Instrument Serif removed - will be loaded via next/font */
+
+/* @font-face rules for Raleway removed - will be loaded via next/font */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-main-white: #ffffff;
+  --color-main-black: #0c0c0c;
+  --font-degular-display: 'Degular Display', sans-serif;
+  --font-sprat: 'Sprat', serif;
+  /* CSS variables for Raleway and Instrument Serif also removed */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-main-black);
+  font-family: var(--font-degular-display);
 }
