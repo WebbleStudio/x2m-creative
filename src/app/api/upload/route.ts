@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
 
     // Genera un nome file unico
     const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.]/g, "_")}`;
-
+    
     // Carica su Supabase Storage (bucket 'uploads')
     const { data, error } = await supabase.storage
       .from("uploads")

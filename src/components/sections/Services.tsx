@@ -68,40 +68,50 @@ export default function Services() {
 
   return (
     <section id="services" className="relative w-full min-h-[700px] md:min-h-[800px] lg:min-h-[850px] xl:min-h-[900px] flex flex-col items-center justify-center overflow-hidden py-16">
+      <header className="sr-only">
+        <h2>I Nostri Servizi Creativi</h2>
+        <p>Scopri i servizi di X2M Creative: advertisement, video making, social media strategy e branding per far crescere il tuo brand.</p>
+      </header>
+      
       {/* Layout responsive: mobile/tablet verticale, lg orizzontale */}
       <div className="w-full flex flex-col lg:flex-row lg:gap-6 lg:h-[500px]">
         {/* Advertisement box - 55% width */}
-        <div 
+        <article 
           className="w-full lg:w-[55%] h-[480px] lg:h-[540px] bg-gray-400 rounded-[30px] flex items-start justify-start p-[35px] mb-6 lg:mb-0 relative"
           style={{
             backgroundImage: "url('/img/adv.png')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
+          itemScope
+          itemType="https://schema.org/Service"
         >
           <div className="flex flex-col">
-            <h2 className="font-raleway font-semibold text-[30px] 2xl:text-[40px] text-[#0c0c0c] mb-4">
+            <h3 className="font-raleway font-semibold text-[30px] 2xl:text-[40px] text-[#0c0c0c] mb-4" itemProp="name">
               Advertisement
-            </h2>
-            <p className="font-raleway font-medium text-[15px] lg:text-[18px] text-[#0c0c0c] max-w-2xl">
+            </h3>
+            <p className="font-raleway font-medium text-[15px] lg:text-[18px] text-[#0c0c0c] max-w-2xl" itemProp="description">
               Massimizziamo l&apos;impatto del tuo brand con campagne pubblicitarie strategiche e mirate. Dalla creatività al risultato, ogni annuncio è progettato per far crescere il tuo business.
             </p>
+                          <meta itemProp="provider" content="X2M Creative" />
+            <meta itemProp="serviceType" content="Advertisement Services" />
           </div>
           
           {/* External icon in basso a destra */}
-          <div className="absolute bottom-[25px] right-[25px]">
+          <div className="absolute bottom-[25px] right-[25px]" aria-hidden="true">
             <img 
               src="/img/icons/External-Link.svg" 
-              alt="External link icon"
+              alt="Icona link esterno per servizio Advertisement"
               width={45}
               height={45}
               className="w-[45px] h-[45px]"
+              loading="lazy"
             />
           </div>
-        </div>
+        </article>
 
         {/* Services cards - 45% width */}
-        <div className="w-full lg:w-[45%] lg:flex-none">
+        <aside className="w-full lg:w-[45%] lg:flex-none" role="complementary" aria-label="Altri servizi creativi">
           {/* Mobile/tablet: animazioni layout mobile */}
           <div className="w-full space-y-2 relative block lg:hidden">
             {services.map((service, index) => (
@@ -131,7 +141,7 @@ export default function Services() {
               ))}
             </div>
           </div>
-        </div>
+        </aside>
       </div>
     </section>
   );

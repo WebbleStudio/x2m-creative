@@ -1,0 +1,27 @@
+{
+  "name": "X2M Creative",
+  "short_name": "X2m",
+  "description": "X2M combina creatività e strategia per far crescere il tuo brand in modo misurabile",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0c0c",
+  "theme_color": "#3487F4",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity", "design"],
+  "lang": "it",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/img/X2M.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/img/X2M.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+} 

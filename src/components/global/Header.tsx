@@ -73,18 +73,29 @@ export default function Header() {
           ${isAdminDashboard ? '' : 'transition-all duration-300 ease-in-out'}
           ${isAdminDashboard ? 'h-[70px]' : (isScrolled ? 'h-[70px]' : 'h-[90px]')}
         `}
+        role="banner"
+        itemScope
+        itemType="https://schema.org/WPHeader"
       >
         <div className="relative w-full max-w-[1300px] 2xl:max-w-[1650px] mx-auto h-full flex items-center justify-between">
           {/* Left Navigation - Desktop */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {navLinks.map((link) => (
+          <nav 
+            className="hidden lg:flex items-center space-x-8"
+            role="navigation"
+            aria-label="Navigazione principale"
+            itemScope
+            itemType="https://schema.org/SiteNavigationElement"
+          >
+            {navLinks.map((link, index) => (
               link.type === 'link' ? (
                 <Link
                   key={link.label}
                   href={link.href}
                   className="font-raleway text-[16px] text-main-black hover:text-creative-blue transition-colors duration-200"
+                  itemProp="url"
+                  aria-label={`Vai alla pagina ${link.label}`}
                 >
-                  {link.label}
+                  <span itemProp="name">{link.label}</span>
                 </Link>
               ) : (
                 pathname === '/' ? (
@@ -96,6 +107,7 @@ export default function Header() {
                     offset={-80}
                     className="font-raleway text-[16px] text-main-black hover:text-creative-blue transition-colors duration-200 cursor-pointer"
                     activeClass="text-creative-blue"
+                    aria-label={`Vai alla sezione ${link.label}`}
                   >
                     {link.label}
                   </ScrollLink>
@@ -104,6 +116,7 @@ export default function Header() {
                     key={link.label}
                     onClick={() => handleNavigation(link.to, link.label)}
                     className="font-raleway text-[16px] text-main-black hover:text-creative-blue transition-colors duration-200 cursor-pointer"
+                    aria-label={`Vai alla sezione ${link.label}`}
                   >
                     {link.label}
                   </button>
@@ -114,15 +127,16 @@ export default function Header() {
 
           {/* Logo - Centered on Desktop using absolute positioning, normal flow on mobile */}
           <div className="lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">
-            <Link href="/" aria-label="X2M Homepage">
+            <Link href="/" aria-label="X2M Creative - Vai alla homepage">
               <Image
                 src="/img/X2M.png" // Path relative to the public directory
-                alt="X2M Logo"
+                alt="X2M Creative - Logo"
                 width={75} // Placeholder width, adjust as needed
                 height={40} // Placeholder height, adjust as needed
                 priority // Add priority if it's an LCP element
                 className={`${isAdminDashboard ? 'scale-90' : `transition-all duration-300 ease-in-out ${isScrolled ? 'scale-90' : 'scale-100'}`}`}
                 style={{height: 'auto'}}
+                itemProp="logo"
               />
             </Link>
           </div>
@@ -134,6 +148,8 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               className="font-raleway text-[16px] border-2 border-main-black text-main-black px-4 py-2 rounded-lg hover:bg-main-black hover:text-main-white transition-colors duration-200"
+              aria-label="Visualizza portfolio X2M Creative su Behance (si apre in una nuova finestra)"
+              itemProp="url"
             >
               Portfolio
             </a>
@@ -145,6 +161,7 @@ export default function Header() {
                 offset={-80}
                 className="font-raleway text-[16px] bg-main-black text-main-white px-4 py-2 rounded-lg hover:bg-opacity-80 transition-colors duration-300 cursor-pointer"
                 activeClass="bg-opacity-80"
+                aria-label="Vai alla sezione contatti"
               >
                 Contattaci
               </ScrollLink>
@@ -152,6 +169,7 @@ export default function Header() {
               <button
                 onClick={() => handleNavigation('contact', 'Contattaci')}
                 className="font-raleway text-[16px] bg-main-black text-main-white px-4 py-2 rounded-lg hover:bg-opacity-80 transition-colors duration-300 cursor-pointer"
+                aria-label="Vai alla sezione contatti"
               >
                 Contattaci
               </button>
@@ -163,17 +181,22 @@ export default function Header() {
             <button 
               className={`p-2 lg:hidden ml-auto transition-colors duration-300 relative z-[1001] text-current`}
               onClick={() => setIsMobileMenuOpen(true)}
-              aria-label="Apri menu mobile"
+              aria-label="Apri menu di navigazione mobile"
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
             >
               <div className="relative w-8 h-8 flex flex-col justify-center items-center space-y-1.5">
                 <span 
                   className={`block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out transform origin-center rotate-0 translate-y-0`}
+                  aria-hidden="true"
                 />
                 <span 
                   className={`block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out opacity-100 scale-100`}
+                  aria-hidden="true"
                 />
                 <span 
                   className={`block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out transform origin-center rotate-0 translate-y-0`}
+                  aria-hidden="true"
                 />
               </div>
             </button>
@@ -184,18 +207,25 @@ export default function Header() {
             {/* Mobile Menu Overlay */}
       {isClient && (
         <div 
+          id="mobile-menu"
           className={`fixed inset-0 z-[1000] lg:hidden transition-all duration-500 ease-in-out ${
             isMobileMenuOpen 
               ? 'opacity-100 visible' 
               : 'opacity-0 invisible'
           }`}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="mobile-menu-title"
         >
+          <h2 id="mobile-menu-title" className="sr-only">Menu di navigazione mobile</h2>
+          
           {/* Backdrop */}
           <div 
             className={`absolute inset-0 bg-black backdrop-blur-md transition-all duration-500 ease-in-out ${
               isMobileMenuOpen ? 'bg-opacity-70' : 'bg-opacity-0'
             }`}
             onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
           />
           
           {/* Menu Panel */}
@@ -204,7 +234,11 @@ export default function Header() {
               isMobileMenuOpen ? 'translate-x-0 bg-opacity-70' : 'translate-x-full bg-opacity-0'
             }`}
           >
-          <div className="flex flex-col items-center justify-center h-full px-8 space-y-8">
+          <nav 
+            className="flex flex-col items-center justify-center h-full px-8 space-y-8"
+            role="navigation" 
+            aria-label="Navigazione mobile"
+          >
             {/* Navigation Links */}
             {navLinks.map((link, index) => (
               <div
@@ -223,6 +257,7 @@ export default function Header() {
                     href={link.href}
                     onClick={handleLinkClick}
                     className="font-raleway text-3xl sm:text-4xl text-white hover:text-creative-blue transition-colors duration-300 block text-center"
+                    aria-label={`Vai alla pagina ${link.label}`}
                   >
                     {link.label}
                   </Link>
@@ -235,6 +270,7 @@ export default function Header() {
                       offset={-80}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="font-raleway text-3xl sm:text-4xl text-white hover:text-creative-blue transition-colors duration-300 cursor-pointer block text-center"
+                      aria-label={`Vai alla sezione ${link.label}`}
                     >
                       {link.label}
                     </ScrollLink>
@@ -242,6 +278,7 @@ export default function Header() {
                     <button
                       onClick={() => handleNavigation(link.to, link.label)}
                       className="font-raleway text-3xl sm:text-4xl text-white hover:text-creative-blue transition-colors duration-300 cursor-pointer block text-center"
+                      aria-label={`Vai alla sezione ${link.label}`}
                     >
                       {link.label}
                     </button>
@@ -268,6 +305,7 @@ export default function Header() {
                   rel="noopener noreferrer"
                   onClick={handleLinkClick}
                   className="font-raleway text-xl border border-white text-white px-8 py-3 rounded-lg hover:bg-white hover:text-black transition-colors duration-300 block text-center w-full box-border"
+                  aria-label="Visualizza portfolio X2M Creative su Behance (si apre in una nuova finestra)"
                 >
                   Portfolio
                 </a>
@@ -291,6 +329,7 @@ export default function Header() {
                     offset={-80}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="font-raleway text-xl bg-white text-black px-8 py-3 rounded-lg hover:bg-opacity-80 transition-colors duration-300 cursor-pointer block text-center w-full box-border"
+                    aria-label="Vai alla sezione contatti"
                   >
                     Contattaci
                   </ScrollLink>
@@ -298,13 +337,14 @@ export default function Header() {
                   <button
                     onClick={() => handleNavigation('contact', 'Contattaci')}
                     className="font-raleway text-xl bg-white text-black px-8 py-3 rounded-lg hover:bg-opacity-80 transition-colors duration-300 cursor-pointer block text-center w-full box-border"
+                    aria-label="Vai alla sezione contatti"
                   >
                     Contattaci
                   </button>
                 )}
               </div>
             </div>
-                     </div>
+                     </nav>
          </div>
        </div>
        )}
@@ -313,13 +353,13 @@ export default function Header() {
         <button
           className="fixed top-5 right-5 z-[1001] p-2 text-white lg:hidden animate-xfadein"
           onClick={() => setIsMobileMenuOpen(false)}
-          aria-label="Chiudi menu mobile"
+          aria-label="Chiudi menu di navigazione mobile"
           style={{ WebkitTapHighlightColor: 'transparent' }}
         >
           <div className="relative w-8 h-8 flex flex-col justify-center items-center space-y-1.5">
-            <span className="block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out transform origin-center rotate-45 translate-y-2" />
-            <span className="block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out opacity-0 scale-0" />
-            <span className="block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out transform origin-center -rotate-45 -translate-y-2" />
+            <span className="block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out transform origin-center rotate-45 translate-y-2" aria-hidden="true" />
+            <span className="block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out opacity-0 scale-0" aria-hidden="true" />
+            <span className="block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out transform origin-center -rotate-45 -translate-y-2" aria-hidden="true" />
           </div>
         </button>
       )}

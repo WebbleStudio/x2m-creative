@@ -105,23 +105,67 @@ export default function Vision() {
       id="vision"
       className="min-h-[700px] md:h-screen lg:min-h-[850px] bg-main-black text-main-white flex flex-col items-center justify-center relative overflow-hidden"
       style={{ perspective: '1000px' }}
+      itemScope
+      itemType="https://schema.org/AboutPage"
+      aria-labelledby="vision-heading"
     >
-      <div className="w-full px-5 text-center mt-16"> {/* Added mt-16 here */}
+      {/* Invisible structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "name": "La Nostra Visione - X2M Creative",
+            "description": "X2M combina creatività e strategia per far crescere il tuo brand in modo misurabile. Approccio dinamico, creativo e affidabile.",
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "X2M Creative",
+              "url": "https://x2marco.com",
+              "description": "Agenzia creativa specializzata in branding, strategia social media e video marketing"
+            },
+            "about": [
+              {
+                "@type": "Thing",
+                "name": "Approccio Dinamico",
+                "description": "Soluzioni creative che si adattano alle esigenze del mercato"
+              },
+              {
+                "@type": "Thing", 
+                "name": "Creatività",
+                "description": "Design innovativo e contenuti originali per il tuo brand"
+              },
+              {
+                "@type": "Thing",
+                "name": "Affidabilità",
+                "description": "Partner di fiducia per la crescita sostenibile del tuo business"
+              }
+            ]
+          })
+        }}
+      />
+      
+      <header className="w-full px-5 text-center mt-16"> {/* Added mt-16 here */}
         <h2 
+          id="vision-heading"
           className="mb-6 font-degular-display leading-tight"
+          itemProp="name"
         >
           <span className="block font-raleway font-medium text-[30px] md:text-[36px] 2xl:text-[45px]">Potenzia la tua visione.</span>
           <span className="block font-instrument-serif italic text-[30px] md:text-[36px] 2xl:text-[45px]">Amplifica i tuoi risultati.</span>
         </h2>
-        <p className="text-[15px] md:text-[18px] 2xl:text-[23px] text-main-white mt-0 mb-12 max-w-2xl mx-auto font-raleway font-medium">
+        <p 
+          className="text-[15px] md:text-[18px] 2xl:text-[23px] text-main-white mt-0 mb-12 max-w-2xl mx-auto font-raleway font-medium"
+          itemProp="description"
+        >
           X2M combina creatività e strategia per far <br></br> crescere il tuo brand in modo misurabile
         </p>
-      </div>
+      </header>
       
       {/* Responsive: animazione sotto lg, 3 card affiancate su lg+ */}
       <div className="w-full h-[400px] flex items-center justify-center relative">
         {/* Mobile/tablet: animazione */}
-        <div className="flex-1 h-full block lg:hidden relative">
+        <div className="flex-1 h-full block lg:hidden relative" role="region" aria-label="Caratteristiche aziendali interattive">
           <div className="relative flex items-center justify-center w-full h-full">
             {cardsData.map((card, index) => (
               <motion.div
@@ -130,6 +174,15 @@ export default function Vision() {
                 variants={cardVariants}
                 animate={getVariantName(index)}
                 transition={cardTransition}
+                role="button"
+                tabIndex={0}
+                aria-label={`Carta ${card.title}, numero ${card.number}`}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleCardClick(card.id);
+                  }
+                }}
               >
                 <VisionCard
                   title={card.title}
@@ -146,14 +199,18 @@ export default function Vision() {
           </div>
         </div>
         {/* Desktop: 3 card affiancate senza animazione, overlay su hover */}
-        <div className="hidden lg:flex flex-row items-center justify-center w-full h-full">
+        <div className="hidden lg:flex flex-row items-center justify-center w-full h-full" role="region" aria-label="Caratteristiche aziendali">
           {cardsData.map((card, index) => (
-            <div
+            <article
               key={card.id}
               className="h-full flex-1 max-w-[470px] lg:px-6 flex items-center justify-center"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
+              itemScope
+              itemType="https://schema.org/CreativeWork"
             >
+              <meta itemProp="name" content={card.title} />
+              <meta itemProp="description" content={`Approccio ${card.title.toLowerCase()} di X2M Creative`} />
               <VisionCard
                 title={card.title}
                 cardNumber={card.number}
@@ -164,7 +221,7 @@ export default function Vision() {
                 isActive={index === 0 ? hoveredIndex !== 0 : hoveredIndex === index}
                 size="lg"
               />
-            </div>
+            </article>
           ))}
         </div>
       </div>

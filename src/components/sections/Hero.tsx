@@ -33,10 +33,12 @@ export default function Hero({
       <div className="absolute inset-0 flex items-center justify-center z-0">
         <Image
           src={backgroundImage}
-          alt="Background accent"
+                      alt="Sfondo decorativo con elementi grafici creativi per X2M Creative"
           width={2000}
           height={1500}
           className="object-cover scale-150 sm:scale-100"
+          priority={backgroundImage === "/img/gradient.png"}
+          loading={backgroundImage === "/img/gradient.png" ? "eager" : "lazy"}
         />
       </div>
 
@@ -46,67 +48,80 @@ export default function Hero({
           <>
             <Image
               src="/img/blue-star.png"
-              alt="Blue star accent"
+              alt="Stella decorativa blu - Elemento grafico X2M Creative"
               width={26}
               height={26}
               className="absolute top-[-38px] left-[-28px] z-20 w-[26px] h-[26px] sm:w-[30px] sm:h-[30px] md:w-[34px] md:h-[34px] lg:w-[39px] lg:h-[39px] xl:w-[45px] xl:h-[45px] 2xl:w-[52px] 2xl:h-[52px]"
               style={{ width: 'auto', height: 'auto' }}
+              loading="lazy"
+              aria-hidden="true"
             />
             <Image
               src="/img/green-star.png"
-              alt="Green star accent"
+              alt="Stella decorativa verde - Elemento grafico X2M Creative"
               width={26}
               height={26}
               className="absolute top-[-38px] right-[-28px] z-20 w-[26px] h-[26px] sm:w-[30px] sm:h-[30px] md:w-[34px] md:h-[34px] lg:w-[39px] lg:h-[39px] xl:w-[45px] xl:h-[45px] 2xl:w-[52px] 2xl:h-[52px]"
               style={{ width: 'auto', height: 'auto' }}
+              loading="lazy"
+              aria-hidden="true"
             />
             <Image
               src="/img/red-star.png"
-              alt="Red star accent"
+              alt="Stella decorativa rossa - Elemento grafico X2M Creative"
               width={26}
               height={26}
               className="absolute bottom-[-42px] left-[-10px] z-20 w-[26px] h-[26px] sm:w-[30px] sm:h-[30px] md:w-[34px] md:h-[34px] lg:w-[39px] lg:h-[39px] xl:w-[45px] xl:h-[45px] 2xl:w-[52px] 2xl:h-[52px]"
               style={{ width: 'auto', height: 'auto' }}
+              loading="lazy"
+              aria-hidden="true"
             />
           </>
-        ) : (
+        ) :
           <>
             <Image 
               src="/img/blue-star.png" 
-              alt="Blue star accent"
+              alt="Stella decorativa blu - Elemento grafico X2M Creative"
               width={40}
               height={40}
               className="absolute top-[-30px] left-[-15px] sm:top-[-40px] sm:left-[-30px] 2xl:top-[-60px] 2xl:left-[-60px] z-20 w-[40px] h-[40px] 2xl:w-[72px] 2xl:h-[72px]"
               style={{ width: '40px', height: '40px' }}
+              loading="lazy"
+              aria-hidden="true"
             />
             <Image 
               src="/img/green-star.png" 
-              alt="Green star accent"
+              alt="Stella decorativa verde - Elemento grafico X2M Creative"
               width={40}
               height={40}
               className="absolute top-[-20px] right-[-10px] sm:top-[-30px] sm:right-[-25px] 2xl:top-[-50px] 2xl:right-[-60px] z-20 w-[40px] h-[40px] 2xl:w-[72px] 2xl:h-[72px]"
               style={{ width: '40px', height: '40px' }}
+              loading="lazy"
+              aria-hidden="true"
             />
             <Image 
               src="/img/red-star.png" 
-              alt="Red star accent"
+              alt="Stella decorativa rossa - Elemento grafico X2M Creative"
               width={40}
               height={40}
               className="absolute bottom-[-65px] left-[-10px] sm:bottom-[-75px] sm:left-[-18px] 2xl:bottom-[-90px] 2xl:left-[-60px] z-20 w-[40px] h-[40px] 2xl:w-[72px] 2xl:h-[72px]"
               style={{ width: '40px', height: '40px' }}
+              loading="lazy"
+              aria-hidden="true"
             />
           </>
-        )}
+        }
 
         <div>
           {quote && author && (
-            <p className="text-[18px] text-[#000000]/40 mb-4 font-raleway">
-              - {author}
-            </p>
+            <blockquote className="text-[18px] text-[#000000]/40 mb-4 font-raleway">
+              <p>"{quote}"</p>
+              <cite className="not-italic">- {author}</cite>
+            </blockquote>
           )}
           <h1 className="text-[62px] sm:text-[72px] md:text-[84px] lg:text-[96px] xl:text-[110px] 2xl:text-[130px] leading-[1.1em] font-degular-display font-semibold">
             <span className="relative inline-block px-2">
-              {!noBgBox && <div className="absolute inset-0 bg-creative-blue rounded-[15px] -z-10 rotate-[2deg]"></div>}
+              {!noBgBox && <div className="absolute inset-0 bg-creative-blue rounded-[15px] -z-10 rotate-[2deg]" aria-hidden="true"></div>}
               <span className={`relative ${noBgBox ? "text-main-black" : "text-main-white"}`}>{title.firstLine}</span>
             </span>
             {title.secondLine && (
@@ -161,14 +176,15 @@ export default function Hero({
       </div>
 
       {showScrollIndicator && (
-        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-10 text-center">
+        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-10 text-center" role="navigation" aria-label="Indicatore di scroll">
           <p className="text-[18px] text-[#000000]/40 font-raleway">
             Scopri di più
           </p>
           <img 
             src="/img/icons/arrows.svg" 
-            alt="Scroll down arrows" 
+            alt="Frecce di scroll verso il basso" 
             className="mx-auto mt-3 h-6 w-6 animate-bounce-custom"
+            loading="lazy"
           />
         </div>
       )}

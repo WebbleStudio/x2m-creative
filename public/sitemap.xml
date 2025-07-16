@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://x2m-creative.vercel.app/</loc>
+    <lastmod>2025-01-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://x2m-creative.vercel.app/img/X2M.png</image:loc>
+      <image:title>X2M Creative Logo</image:title>
+      <image:caption>Logo dell'agenzia creativa X2M Creative specializzata in branding e marketing digitale</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Portfolio/Progetti Page -->
+  <url>
+    <loc>https://x2m-creative.vercel.app/progetti</loc>
+    <lastmod>2025-01-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- About Page -->
+  <url>
+    <loc>https://x2m-creative.vercel.app/about</loc>
+    <lastmod>2025-01-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+</urlset> 
