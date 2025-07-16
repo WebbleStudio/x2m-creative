@@ -3,18 +3,6 @@ import cloudinary from "cloudinary";
 
 export const runtime = "nodejs";
 
-// Configura Cloudinary con le variabili d'ambiente
-cloudinary.v2.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
-// Log temporaneo per debug variabili d'ambiente
-console.log("CLOUDINARY_CLOUD_NAME", process.env.CLOUDINARY_CLOUD_NAME);
-console.log("CLOUDINARY_API_KEY", process.env.CLOUDINARY_API_KEY);
-console.log("CLOUDINARY_API_SECRET", process.env.CLOUDINARY_API_SECRET);
-
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
   const file = formData.get("file") as File;
@@ -23,11 +11,9 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    // Leggi il file come buffer
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    // Carica su Cloudinary
     const uploadResult = await new Promise<cloudinary.UploadApiResponse>((resolve, reject) => {
       cloudinary.v2.uploader.upload_stream(
         { folder: "uploads" },
@@ -38,7 +24,6 @@ export async function POST(req: NextRequest) {
       ).end(buffer);
     });
 
-    // @ts-ignore
     return NextResponse.json({ url: uploadResult.secure_url });
   } catch (error) {
     console.error("Upload error:", error);
