@@ -10,22 +10,54 @@ export default function Services() {
     {
       id: 'video-making',
       title: 'Video Making',
-      content: `Diamo vita alle tue idee attraverso video coinvolgenti, pensati per comunicare al meglio il tuo messaggio su ogni piattaforma.\nDalla scrittura alla post-produzione, curiamo ogni fase con creatività e precisione.`
+      content: {
+        intro: 'Trasformiamo le tue idee in video coinvolgenti e professionali.',
+        points: [
+          'Concept e storytelling creativo',
+          'Riprese con equipment professionale', 
+          'Editing e post-produzione avanzata',
+          'Ottimizzazione per ogni piattaforma'
+        ]
+      }
     },
     {
       id: 'social-media',
       title: 'Social Media Strategy',
-      content: `Progettiamo strategie social su misura per far crescere la tua presenza online.\nAnalizziamo, pianifichiamo e creiamo contenuti mirati per connetterti davvero con il tuo pubblico.`
+      content: {
+        intro: 'Strategie social personalizzate per far crescere il tuo brand online.',
+        points: [
+          'Analisi del target e competitor',
+          'Piano editoriale strategico',
+          'Creazione contenuti mirati',
+          'Community management e crescita organica'
+        ]
+      }
     },
     {
       id: 'branding',
       title: 'Branding e visual identity',
-      content: `Costruiamo identità visive coerenti e memorabili, capaci di rappresentare davvero i valori del tuo brand. Naming, logo, palette, stile: ogni elemento parla di te.`
+      content: {
+        intro: 'Identità visive uniche che raccontano davvero il tuo brand.',
+        points: [
+          'Naming e brand positioning',
+          'Logo design e brand identity',
+          'Palette colori e typography',
+          'Brand guidelines complete'
+        ]
+      }
     },
     {
       id: 'contact',
       title: 'Contattaci',
-      content: `Prenota una call gratuita con il nostro team: ti ascoltiamo, analizziamo i tuoi bisogni e ti proponiamo la soluzione più adatta.\nBastano pochi clic su Calendly per fissare il tuo appuntamento.`,
+      content: {
+        intro: 'Iniziamo insieme il tuo progetto con una consulenza gratuita.',
+        points: [
+          'Call strategica di 30 minuti',
+          'Analisi personalizzata dei tuoi obiettivi',
+          'Proposta su misura per le tue esigenze',
+          'Nessun impegno, solo valore'
+        ]
+      },
       calendly: true
     }
   ];

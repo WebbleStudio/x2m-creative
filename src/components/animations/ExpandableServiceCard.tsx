@@ -5,7 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface Service {
   id: string;
   title: string;
-  content: string;
+  content: {
+    intro: string;
+    points: string[];
+  };
   calendly?: boolean;
 }
 
@@ -188,20 +191,31 @@ export default function ExpandableServiceCard({
                 {service.title}
               </h2>
             </div>
-            {/* Testo espanso grande e leggibile */}
+            
+            {/* Contenuto espanso con testo più piccolo */}
             <div className="py-4 px-1">
-              {service.content.split('\n').map((line, idx) => (
-                <p key={idx} className={`text-lg md:text-xl font-raleway font-medium mb-2 last:mb-0 ${service.calendly ? 'text-white' : 'text-[#0c0c0c]'}`}> 
-                  {line}
-                </p>
-              ))}
+              {/* Intro */}
+              <p className={`text-sm md:text-base font-raleway font-medium mb-4 ${service.calendly ? 'text-white' : 'text-[#0c0c0c]'}`}> 
+                {service.content.intro}
+              </p>
+              
+              {/* Punti elenco */}
+              <ul className="space-y-2 mb-4">
+                {service.content.points.map((point, idx) => (
+                  <li key={idx} className={`text-sm md:text-base font-raleway font-normal flex items-start gap-2 ${service.calendly ? 'text-white/90' : 'text-[#0c0c0c]/80'}`}>
+                    <span className={`text-xs mt-1.5 ${service.calendly ? 'text-white/60' : 'text-[#0c0c0c]/40'}`}>•</span>
+                    {point}
+                  </li>
+                ))}
+              </ul>
+              
               {service.calendly && (
                 <div className="flex justify-start mt-6">
                   <a
                     href="https://calendly.com/" // Sostituisci con il tuo link Calendly
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-8 py-3 rounded-full bg-creative-blue text-white font-semibold text-lg shadow-lg hover:bg-blue-700 transition-all duration-200"
+                    className="px-6 py-2.5 rounded-full bg-creative-blue text-white font-semibold text-sm md:text-base shadow-lg hover:bg-blue-700 transition-all duration-200"
                   >
                     Prenota call
                   </a>
