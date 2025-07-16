@@ -10,6 +10,11 @@ cloudinary.v2.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+// Log temporaneo per debug variabili d'ambiente
+console.log("CLOUDINARY_CLOUD_NAME", process.env.CLOUDINARY_CLOUD_NAME);
+console.log("CLOUDINARY_API_KEY", process.env.CLOUDINARY_API_KEY);
+console.log("CLOUDINARY_API_SECRET", process.env.CLOUDINARY_API_SECRET);
+
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
   const file = formData.get("file") as File;
