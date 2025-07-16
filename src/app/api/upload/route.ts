@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import cloudinary from "cloudinary";
+import { createClient } from "@supabase/supabase-js";
 
 export const runtime = "nodejs";
+
+// Crea il client Supabase
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_ANON_KEY!
+);
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
@@ -14,17 +20,28 @@ export async function POST(req: NextRequest) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    const uploadResult = await new Promise<cloudinary.UploadApiResponse>((resolve, reject) => {
-      cloudinary.v2.uploader.upload_stream(
-        { folder: "uploads" },
-        (error: any, result: cloudinary.UploadApiResponse | undefined) => {
-          if (error) return reject(error);
-          resolve(result!);
-        }
-      ).end(buffer);
-    });
+    // Genera un nome file unico
+    const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.]/g, "_")}`;
 
-    return NextResponse.json({ url: uploadResult.secure_url });
+    // Carica su Supabase Storage (bucket 'uploads')
+    const { data, error } = await supabase.storage
+      .from("uploads")
+      .upload(filename, buffer, {
+        contentType: file.type,
+        upsert: false,
+      });
+
+    if (error) {
+      console.error("Supabase upload error:", error);
+      return NextResponse.json({ error: "Errore durante l'upload su Supabase" }, { status: 500 });
+    }
+
+    // Ottieni la URL pubblica
+    const { data: publicUrlData } = supabase.storage
+      .from("uploads")
+      .getPublicUrl(filename);
+
+    return NextResponse.json({ url: publicUrlData.publicUrl });
   } catch (error) {
     console.error("Upload error:", error);
     return NextResponse.json({ error: "Errore durante l'upload del file" }, { status: 500 });
