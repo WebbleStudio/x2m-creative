@@ -13,8 +13,8 @@ interface Progetto {
   immagine: string;
   link?: string;  // Campo opzionale per il link
   visibile: boolean;
-  inEvidenza: boolean;
-  createdAt: string;
+  in_evidenza: boolean;
+  created_at: string;
 }
 
 export default function DashboardPage() {
@@ -47,7 +47,7 @@ function DashboardContent() {
   const [imagePreview, setImagePreview] = useState("");
   const [showAddForm, setShowAddForm] = useState(false);
   const maxEvidenza = 3;
-  const inEvidenzaCount = progetti.filter(p => p.inEvidenza).length;
+  const inEvidenzaCount = progetti.filter(p => p.in_evidenza).length;
   const [editId, setEditId] = useState<string | null>(null);
   const [editTitolo, setEditTitolo] = useState("");
   const [editDescrizione, setEditDescrizione] = useState("");
@@ -103,8 +103,8 @@ function DashboardContent() {
     }
   }
 
-  async function handleToggle(id: string, field: "visibile" | "inEvidenza", value: boolean) {
-    if (field === "inEvidenza" && value && inEvidenzaCount >= maxEvidenza) {
+  async function handleToggle(id: string, field: "visibile" | "in_evidenza", value: boolean) {
+    if (field === "in_evidenza" && value && inEvidenzaCount >= maxEvidenza) {
       setError("Puoi selezionare al massimo 3 progetti in evidenza.");
       setTimeout(() => setError(""), 3000);
       return;
@@ -431,15 +431,15 @@ function DashboardContent() {
                           </label>
                           
                           <label className="flex items-center space-x-2 cursor-pointer">
-                            <div className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${p.inEvidenza ? 'bg-blue-600' : 'bg-white/20'}`}>
+                            <div className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${p.in_evidenza ? 'bg-blue-600' : 'bg-white/20'}`}>
                               <input
                                 type="checkbox"
-                                checked={p.inEvidenza}
-                                onChange={e => handleToggle(p.id, "inEvidenza", e.target.checked)}
-                                disabled={!p.inEvidenza && inEvidenzaCount >= maxEvidenza}
+                                checked={p.in_evidenza}
+                                onChange={e => handleToggle(p.id, "in_evidenza", e.target.checked)}
+                                disabled={!p.in_evidenza && inEvidenzaCount >= maxEvidenza}
                                 className="sr-only"
                               />
-                              <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${p.inEvidenza ? 'translate-x-6' : 'translate-x-1'}`} />
+                              <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${p.in_evidenza ? 'translate-x-6' : 'translate-x-1'}`} />
                             </div>
                             <span className="text-white/80 text-sm font-medium">In Evidenza</span>
                           </label>

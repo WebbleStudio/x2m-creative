@@ -7,8 +7,8 @@ interface Progetto {
   descrizione: string;
   immagine: string;
   visibile: boolean;
-  inEvidenza: boolean;
-  createdAt: string;
+  in_evidenza: boolean;
+  created_at: string;
 }
 
 async function getProgettiInEvidenza(): Promise<Progetto[]> {
@@ -22,7 +22,7 @@ async function getProgettiInEvidenza(): Promise<Progetto[]> {
   });
   if (!res.ok) return [];
   const progetti = await res.json();
-  return progetti.filter((p: Progetto) => p.inEvidenza).slice(0, 3);
+  return progetti.filter((p: Progetto) => p.in_evidenza).slice(0, 3);
 }
 
 export default async function Works() {

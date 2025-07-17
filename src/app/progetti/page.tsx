@@ -36,8 +36,8 @@ interface Progetto {
   descrizione: string;
   immagine: string;
   visibile: boolean;
-  inEvidenza: boolean;
-  createdAt: string;
+  in_evidenza: boolean;
+  created_at: string;
   link?: string;
 }
 
@@ -98,7 +98,7 @@ export default async function ProgettiPage() {
         },
         "image": progetto.immagine ? `https://x2m-creative.vercel.app${progetto.immagine}` : undefined,
         "url": progetto.link,
-        "dateCreated": progetto.createdAt
+        "dateCreated": progetto.created_at
       }))
     },
     "isPartOf": {
@@ -203,7 +203,7 @@ export default async function ProgettiPage() {
                       {p.descrizione}
                     </p>
                     <meta itemProp="creator" content="X2M Creative" />
-                    <meta itemProp="dateCreated" content={p.createdAt} />
+                    <meta itemProp="dateCreated" content={p.created_at} />
                   </div>
                 </article>
               ))
