@@ -35,8 +35,9 @@ const handler = NextAuth({
   session: {
     strategy: "jwt"
   },
+  secret: process.env.NEXTAUTH_SECRET || "XC6AH/5VF7GPn1oG0m0HRGqEyywWavl6cD3FDsFZOEQ=",
   pages: {
-    signIn: "/admin/login" // (creerai questa pagina dopo)
+    signIn: "/admin/login"
   }
 });
 
