@@ -1,14 +1,13 @@
 {
-  "name": "nome-progetto",
+  "name": "x2m-creative",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "prisma generate && next build --no-lint",
-    "build:vercel": "prisma generate && prisma migrate deploy && next build --no-lint",
+    "dev": "next dev",
+    "build": "next build --no-lint",
+    "build:vercel": "next build --no-lint",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "prisma generate"
+    "lint": "next lint"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.51.0",
