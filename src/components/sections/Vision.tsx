@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion'; // Import motion
 import VisionCard from '../ui/VisionCard'; // Assuming VisionCard is in a subfolder
+import FadeUp from '../animations/FadeUp';
+import StaggeredFadeUp from '../animations/StaggeredFadeUp';
 
 interface CardData {
   id: number;
@@ -171,7 +173,17 @@ export default function Vision() {
               <motion.div
                 key={card.id}
                 className="absolute"
-                variants={cardVariants}
+                variants={{
+                  ...cardVariants,
+                  [getVariantName(index)]: {
+                    ...cardVariants[getVariantName(index) as keyof typeof cardVariants],
+                    transition: {
+                      ...cardTransition,
+                      delay: 0.2
+                    }
+                  }
+                }}
+                initial="hidden"
                 animate={getVariantName(index)}
                 transition={cardTransition}
                 role="button"
@@ -201,27 +213,28 @@ export default function Vision() {
         {/* Desktop: 3 card affiancate senza animazione, overlay su hover */}
         <div className="hidden lg:flex flex-row items-center justify-center w-full h-full" role="region" aria-label="Caratteristiche aziendali">
           {cardsData.map((card, index) => (
-            <article
-              key={card.id}
-              className="h-full flex-1 max-w-[470px] lg:px-6 flex items-center justify-center"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              itemScope
-              itemType="https://schema.org/CreativeWork"
-            >
-              <meta itemProp="name" content={card.title} />
-              <meta itemProp="description" content={`Approccio ${card.title.toLowerCase()} di X2M Creative`} />
-              <VisionCard
-                title={card.title}
-                cardNumber={card.number}
-                content={card.content}
-                imageUrl={card.imageUrl}
-                overlayImageUrl={card.overlayImageUrl}
-                animateOverlay={card.animateOverlay}
-                isActive={index === 0 ? hoveredIndex !== 0 : hoveredIndex === index}
-                size="lg"
-              />
-            </article>
+            <FadeUp key={card.id} delay={0.2 + (index * 0.2)} duration={0.8} distance={40} threshold={0.2} className="h-full flex-1 max-w-[470px] lg:px-6 flex items-center justify-center">
+              <article
+                className="w-full h-full flex items-center justify-center"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                itemScope
+                itemType="https://schema.org/CreativeWork"
+              >
+                <meta itemProp="name" content={card.title} />
+                <meta itemProp="description" content={`Approccio ${card.title.toLowerCase()} di X2M Creative`} />
+                <VisionCard
+                  title={card.title}
+                  cardNumber={card.number}
+                  content={card.content}
+                  imageUrl={card.imageUrl}
+                  overlayImageUrl={card.overlayImageUrl}
+                  animateOverlay={card.animateOverlay}
+                  isActive={index === 0 ? hoveredIndex !== 0 : hoveredIndex === index}
+                  size="lg"
+                />
+              </article>
+            </FadeUp>
           ))}
         </div>
       </div>

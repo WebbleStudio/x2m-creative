@@ -152,7 +152,7 @@ export default function HomePage() {
       <main className="w-full">
         <ClientScrollHandler />
         <Hero 
-          quote="Creativity is intelligence having fun"
+          quote={undefined}
           author="Albert Einstein"
           title={{
             firstLine: "Creativity",

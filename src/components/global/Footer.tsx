@@ -10,7 +10,7 @@ export default function Footer() {
                 <span className="text-sm text-[#fff]/70 mb-1" style={{ transform: 'translateY(20px)' }}>Owner</span>
                 <address className="text-2xl font-bold tracking-tight mb-1 not-italic" style={{ transform: 'translateY(10px)' }}>
                   <span itemScope itemType="https://schema.org/Person">
-                    <span itemProp="name">X2M Creative</span>
+                    <span itemProp="name">X2 Marco</span>
                   </span>
                 </address>
               </div>

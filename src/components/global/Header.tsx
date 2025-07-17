@@ -68,11 +68,27 @@ export default function Header() {
     <>
       <header
         className={`
-          ${isAdminDashboard ? 'bg-main-white' : (isScrolled ? 'bg-main-white' : 'bg-transparent')} text-main-black px-[15px] sm:px-5 md:px-[30px]
-          fixed top-0 left-0 right-0 z-50 
-          ${isAdminDashboard ? '' : 'transition-all duration-300 ease-in-out'}
-          ${isAdminDashboard ? 'h-[70px]' : (isScrolled ? 'h-[70px]' : 'h-[90px]')}
+          fixed z-50 text-main-black
+          ${isAdminDashboard 
+            ? 'top-0 left-0 right-0 bg-main-white h-[70px] px-[15px] sm:px-5 md:px-[30px]'
+            : isScrolled 
+              ? 'top-4 left-1/2 -translate-x-1/2 bg-main-white h-[60px] rounded-2xl shadow-lg backdrop-blur-md px-[15px] sm:px-5 md:px-[30px] transition-all duration-300 ease-out'
+              : 'top-0 left-1/2 -translate-x-1/2 bg-transparent h-[90px] w-full max-w-[1300px] 2xl:max-w-[1650px] px-[15px] sm:px-5 md:px-[30px] transition-all duration-300 ease-out'
+          }
         `}
+        style={
+          isScrolled && !isAdminDashboard && isClient
+            ? {
+                width: window.innerWidth >= 1536 
+                  ? `min(calc(100vw - 60px), 1650px)`
+                  : window.innerWidth >= 768
+                    ? `min(calc(100vw - 60px), 1300px)`
+                    : window.innerWidth >= 640
+                      ? `min(calc(100vw - 40px), 1300px)`
+                      : `min(calc(100vw - 30px), 1300px)`
+              }
+            : undefined
+        }
         role="banner"
         itemScope
         itemType="https://schema.org/WPHeader"
@@ -135,7 +151,7 @@ export default function Header() {
                 height={40} // Placeholder height, adjust as needed
                 priority // Add priority if it's an LCP element
                 className={`${isAdminDashboard ? 'scale-90' : `transition-all duration-300 ease-in-out ${isScrolled ? 'scale-90' : 'scale-100'}`}`}
-                style={{height: 'auto'}}
+                style={{height: 'auto', boxShadow: 'none', filter: 'none'}} // Rimuovo qualsiasi ombra
                 itemProp="logo"
               />
             </Link>
