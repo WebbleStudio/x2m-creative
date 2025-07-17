@@ -1,9 +1,12 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaClient } from "../../../../generated/prisma";
-import { compare } from "bcrypt";
+import { createClient } from "@supabase/supabase-js";
+import { compare } from "bcryptjs";
 
-const prisma = new PrismaClient();
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY!
+);
 
 const handler = NextAuth({
   providers: [
@@ -16,12 +19,14 @@ const handler = NextAuth({
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
 
-        // Cerca l'utente nel database
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email }
-        });
+        // Cerca l'utente nel database Supabase
+        const { data: user, error } = await supabase
+          .from('users')
+          .select('*')
+          .eq('email', credentials.email)
+          .single();
 
-        if (!user) return null;
+        if (error || !user) return null;
 
         // Confronta la password hashata
         const isValid = await compare(credentials.password, user.password);
