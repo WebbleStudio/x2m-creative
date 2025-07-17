@@ -13,3 +13,14 @@ model user {
   email    String @unique
   password String
 }
+
+model Progetto {
+  id          String   @id @default(uuid())
+  titolo      String
+  descrizione String
+  immagine    String
+  visibile    Boolean  @default(false)
+  inEvidenza  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  link        String?
+}
