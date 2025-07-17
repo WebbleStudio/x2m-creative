@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 // GET /api/progetti - lista di tutti i progetti
 export async function GET() {
   try {
-    const progetti = await prisma.Progetto.findMany({
+    const progetti = await prisma.progetto.findMany({
       orderBy: { createdAt: 'desc' }
     });
 
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     const data = await req.json();
     const { titolo, descrizione, immagine, link, visibile, inEvidenza } = data;
     
-    const progetto = await prisma.Progetto.create({
+    const progetto = await prisma.progetto.create({
       data: {
         titolo,
         descrizione,
