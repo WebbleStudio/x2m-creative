@@ -118,10 +118,14 @@ function DashboardContent() {
       setTimeout(() => setError(""), 3000);
       return;
     }
+    
+    // Mappa il nome del campo per l'API
+    const apiField = field === "in_evidenza" ? "inEvidenza" : field;
+    
     await fetch(getApiUrl(`/api/progetti/${id}`), {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ [field]: value }),
+      body: JSON.stringify({ [apiField]: value }),
     });
     fetchProgetti();
   }
