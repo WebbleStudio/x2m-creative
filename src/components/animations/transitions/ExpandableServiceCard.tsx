@@ -469,7 +469,7 @@ export default function ExpandableServiceCard({
                           Hai un progetto in mente? Parliamone insieme! Ogni grande idea inizia con una conversazione. Contattaci per una consulenza gratuita.
                         </p>
                         <a 
-                          href="#services" 
+                          href="#contact" 
                           className="bg-white text-black px-6 py-3 md:px-8 md:py-4 rounded-lg font-semibold text-sm md:text-base flex items-center gap-2 hover:bg-gray-100 transition-colors"
                         >
                           Scrivici ora
@@ -496,7 +496,7 @@ export default function ExpandableServiceCard({
                         Hai un progetto in mente? Parliamone insieme! Ogni grande idea inizia con una conversazione. Contattaci per una consulenza gratuita.
                       </p>
                       <a 
-                        href="#services" 
+                        href="#contact" 
                         className="bg-white text-black px-6 py-3 rounded-lg font-semibold text-sm flex items-center gap-2 hover:bg-gray-100 transition-colors mt-6"
                       >
                         Scrivici ora

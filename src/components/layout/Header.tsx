@@ -226,8 +226,8 @@ export default function Header() {
           
           {/* Backdrop */}
           <div 
-            className={`absolute inset-0 bg-black backdrop-blur-md transition-all duration-500 ease-in-out ${
-              isMobileMenuOpen ? 'bg-opacity-70' : 'bg-opacity-0'
+            className={`absolute inset-0 bg-black transition-all duration-500 ease-in-out ${
+              isMobileMenuOpen ? 'bg-opacity-90' : 'bg-opacity-0'
             }`}
             onClick={() => setIsMobileMenuOpen(false)}
             aria-hidden="true"
@@ -235,7 +235,7 @@ export default function Header() {
           
           {/* Menu Panel */}
           <div 
-            className={`absolute top-0 right-0 h-full w-full backdrop-blur-lg transition-all duration-500 ease-out ${
+            className={`absolute top-0 right-0 h-full w-full bg-black/95 transition-all duration-500 ease-out ${
               isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
           >

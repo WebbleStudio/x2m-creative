@@ -188,12 +188,7 @@ export default function Hero({
               )}
               <span className={`relative ${noBgBox ? "text-main-black" : "text-main-white"}`}>{title.firstLine}</span>
             </span>
-            {/* 'is' fuori dal box azzurro, stile come 'Having fun' */}
-            <FadeUp trigger="mount" delay={2.2} duration={0.8} distance={40} className="inline-block align-middle ml-2">
-              <span className="font-degular-display font-semibold text-main-black xl:text-[110px] 2xl:text-[130px]" style={{letterSpacing: '-2px'}}>
-                is
-              </span>
-            </FadeUp>
+
             {title.secondLine && (
               <>
                 <br />

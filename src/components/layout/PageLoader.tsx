@@ -5,6 +5,9 @@ export default function PageLoader() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    // Disabilita scroll quando il loader è attivo
+    document.body.style.overflow = 'hidden';
+    
     const interval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) return 100;
@@ -12,7 +15,11 @@ export default function PageLoader() {
       });
     }, 100);
 
-    return () => clearInterval(interval);
+    // Cleanup: riabilita scroll quando il componente viene smontato
+    return () => {
+      clearInterval(interval);
+      document.body.style.overflow = 'unset';
+    };
   }, []);
 
   return (
