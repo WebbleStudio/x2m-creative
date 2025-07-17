@@ -30,6 +30,7 @@ const config = {
         'gradient-text': 'gradientText 5s ease infinite',
         'bounce-custom': 'bounceCustom 2s infinite',
         'breathing': 'breathing 2s ease-in-out infinite',
+        'tilt-in': 'tiltIn 1.2s ease-out 0.3s both',
       },
       keyframes: {
         gradientText: {
@@ -53,6 +54,16 @@ const config = {
           },
           '50%': { 
             transform: 'scale(1.05)',
+            opacity: '1'
+          },
+        },
+        tiltIn: {
+          '0%': {
+            transform: 'rotate(0deg)',
+            opacity: '0'
+          },
+          '100%': {
+            transform: 'rotate(2deg)',
             opacity: '1'
           },
         },

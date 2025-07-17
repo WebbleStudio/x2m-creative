@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import Header from "@/components/global/Header";
-import Footer from "@/components/global/Footer";
-import PageLoader from "@/components/global/PageLoader";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import PageLoader from "@/components/layout/PageLoader";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

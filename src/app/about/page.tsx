@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Script from "next/script";
-import Hero from "@/components/sections/Hero";
+import Hero from "@/components/sections/homepage/Hero";
 
 export const metadata: Metadata = {
   title: "Chi Siamo - X2M Creative",

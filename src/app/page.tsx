@@ -1,9 +1,9 @@
-import Contact from "@/components/sections/Contact";
-import Hero from "@/components/sections/Hero";
-import Services from "@/components/sections/Services";
-import Vision from "@/components/sections/Vision";
-import Works from "@/components/sections/Works";
-import ClientScrollHandler from "@/components/global/ClientScrollHandler";
+import Contact from "@/components/sections/homepage/Contact";
+import Hero from "@/components/sections/homepage/Hero";
+import Services from "@/components/sections/homepage/Services";
+import Vision from "@/components/sections/homepage/Vision";
+import Works from "@/components/sections/homepage/Works";
+import ClientScrollHandler from "@/components/layout/ClientScrollHandler";
 import Script from "next/script";
 
 export default function HomePage() {

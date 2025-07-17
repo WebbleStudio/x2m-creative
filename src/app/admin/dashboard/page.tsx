@@ -4,7 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import UploadImage from "@/components/UploadImage";
+import UploadImage from "@/components/features/upload/UploadImage";
 
 interface Progetto {
   id: string;

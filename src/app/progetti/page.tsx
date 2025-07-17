@@ -1,4 +1,4 @@
-import Hero from "@/components/sections/Hero";
+import Hero from "@/components/sections/homepage/Hero";
 import { Metadata } from "next";
 import Script from "next/script";
 
