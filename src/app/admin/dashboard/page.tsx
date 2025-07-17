@@ -83,10 +83,19 @@ function DashboardContent() {
       setError("Tutti i campi sono obbligatori");
       return;
     }
+    const nuovoProgetto = {
+      id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2),
+      titolo,
+      descrizione,
+      immagine,
+      link,
+      visibile: true,
+      in_evidenza: false,
+    };
     const res = await fetch(getApiUrl("/api/progetti"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ titolo, descrizione, immagine, link }),
+      body: JSON.stringify(nuovoProgetto),
     });
     if (res.ok) {
       setTitolo("");
