@@ -9,8 +9,9 @@ const supabase = createClient(
 // PATCH /api/progetti/[id] - aggiorna progetto
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const data = await req.json();
   const { titolo, descrizione, immagine, link, visibile, inEvidenza } = data;
   
@@ -25,7 +26,7 @@ export async function PATCH(
   const { data: progetto, error } = await supabase
     .from('progetti')
     .update(updateData)
-    .eq('id', params.id)
+    .eq('id', id)
     .select()
     .single();
 
@@ -40,12 +41,14 @@ export async function PATCH(
 // DELETE /api/progetti/[id] - elimina progetto
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
+  
   const { error } = await supabase
     .from('progetti')
     .delete()
-    .eq('id', params.id);
+    .eq('id', id);
 
   if (error) {
     console.error('Supabase error:', error);
