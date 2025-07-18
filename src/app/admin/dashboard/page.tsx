@@ -27,9 +27,7 @@ export default function DashboardPage() {
 
 // Helper function per ottenere l'URL API corretto
 function getApiUrl(endpoint: string) {
-  if (process.env.VERCEL_ENV) {
-    return `https://x2m-creative.vercel.app${endpoint}`;
-  }
+  // Per client-side, usa sempre URL relativi - il browser li risolverà automaticamente
   return endpoint;
 }
 

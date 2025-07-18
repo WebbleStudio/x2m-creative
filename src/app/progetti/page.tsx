@@ -42,12 +42,16 @@ interface Progetto {
 }
 
 async function getProgetti(): Promise<Progetto[]> {
-  // Su Vercel, usa URL assoluto. In locale, usa relativo
-  const apiUrl = process.env.VERCEL_ENV 
-    ? 'https://x2m-creative.vercel.app/api/progetti'
-    : (process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000');
+  // Costruisci URL dinamicamente per produzione/sviluppo
+  const baseUrl = process.env.NODE_ENV === 'production' 
+    ? (process.env.NEXT_PUBLIC_SITE_URL || 'https://x2m-creative.vercel.app')
+    : 'http://localhost:3000';
     
-  const res = await fetch(`${apiUrl}${apiUrl.includes('/api/progetti') ? '' : '/api/progetti'}`, { 
+  const apiUrl = process.env.NODE_ENV === 'production' && typeof window === 'undefined'
+    ? `${baseUrl}/api/progetti`  // Server-side in produzione
+    : '/api/progetti';           // Client-side o sviluppo locale
+    
+  const res = await fetch(apiUrl, { 
     cache: 'no-store' 
   });
   if (!res.ok) return [];
