@@ -12,13 +12,18 @@ interface Progetto {
 }
 
 async function getProgettiInEvidenza(): Promise<Progetto[]> {
-  // Usa sempre URL relativi per evitare problemi di mixed content
-  const res = await fetch('/api/progetti', { 
-    cache: 'no-store' 
-  });
-  if (!res.ok) return [];
-  const progetti = await res.json();
-  return progetti.filter((p: Progetto) => p.in_evidenza).slice(0, 3);
+  // Usa l'utility per gestire URL API sicuri
+  const { fetchApi } = await import('@/lib/utils/api');
+  
+  try {
+    const progetti = await fetchApi('/api/progetti', { 
+      cache: 'no-store' 
+    });
+    return progetti.filter((p: Progetto) => p.in_evidenza).slice(0, 3);
+  } catch (error) {
+    console.error('Errore caricamento progetti in evidenza:', error);
+    return []; // Fallback sicuro
+  }
 }
 
 export default async function Works() {

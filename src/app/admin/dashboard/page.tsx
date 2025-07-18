@@ -27,7 +27,7 @@ export default function DashboardPage() {
 
 // Helper function per ottenere l'URL API corretto
 function getApiUrl(endpoint: string) {
-  // Per client-side, usa sempre URL relativi - il browser li risolverà automaticamente
+  // Per client-side (dashboard), usa sempre URL relativi
   return endpoint;
 }
 
@@ -67,9 +67,14 @@ function DashboardContent() {
 
   async function fetchProgetti() {
     setLoading(true);
-    const res = await fetch(getApiUrl("/api/progetti"));
-    const data = await res.json();
-    setProgetti(data);
+    try {
+      const res = await fetch(getApiUrl("/api/progetti"));
+      const data = await res.json();
+      setProgetti(data);
+    } catch (error) {
+      console.error('Errore caricamento progetti dashboard:', error);
+      setProgetti([]);
+    }
     setLoading(false);
   }
 

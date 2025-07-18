@@ -42,12 +42,18 @@ interface Progetto {
 }
 
 async function getProgetti(): Promise<Progetto[]> {
-  // Usa sempre URL relativi per evitare problemi di mixed content
-  const res = await fetch('/api/progetti', { 
-    cache: 'no-store' 
-  });
-  if (!res.ok) return [];
-  return res.json();
+  // Usa l'utility per gestire URL API sicuri
+  const { fetchApi } = await import('@/lib/utils/api');
+  
+  try {
+    const progetti = await fetchApi('/api/progetti', { 
+      cache: 'no-store' 
+    });
+    return progetti;
+  } catch (error) {
+    console.error('Errore caricamento progetti:', error);
+    return []; // Fallback sicuro
+  }
 }
 
 export default async function ProgettiPage() {
