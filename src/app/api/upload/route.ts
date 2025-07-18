@@ -3,13 +3,25 @@ import { createClient } from "@supabase/supabase-js";
 
 export const runtime = "nodejs";
 
-// Crea il client Supabase
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!
-);
+// Configurazione con placeholder per evitare build errors
+const supabaseUrl = process.env.SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseKey = process.env.SUPABASE_ANON_KEY || 'placeholder-key-configure-env-variables';
+
+// Flag per controllare se la configurazione è valida
+const isConfigured = process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY;
+
+if (!isConfigured) {
+  console.error('❌ CONFIGURAZIONE MANCANTE: Devi configurare SUPABASE_URL e SUPABASE_ANON_KEY in .env.local');
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function POST(req: NextRequest) {
+  if (!isConfigured) {
+    console.error('❌ Supabase non configurato per upload');
+    return NextResponse.json({ error: 'Upload non configurato - Configura le variabili d\'ambiente' }, { status: 500 });
+  }
+
   const formData = await req.formData();
   const file = formData.get("file") as File;
   if (!file) {

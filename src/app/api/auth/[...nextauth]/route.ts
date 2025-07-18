@@ -3,10 +3,18 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { createClient } from "@supabase/supabase-js";
 import { compare } from "bcryptjs";
 
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY!
-);
+// Configurazione con placeholder per evitare build errors  
+const supabaseUrl = process.env.SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY || 'placeholder-key-configure-env-variables';
+
+// Flag per controllare se la configurazione è valida
+const isConfigured = process.env.SUPABASE_URL && (process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY);
+
+if (!isConfigured) {
+  console.error('❌ CONFIGURAZIONE MANCANTE: Devi configurare SUPABASE_URL e SUPABASE_ANON_KEY in .env.local');
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 const handler = NextAuth({
   providers: [
@@ -18,6 +26,11 @@ const handler = NextAuth({
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
+        
+        if (!isConfigured) {
+          console.error('❌ Auth non configurato - variabili Supabase mancanti');
+          return null;
+        }
 
         // Cerca l'utente nel database Supabase
         const { data: user, error } = await supabase
