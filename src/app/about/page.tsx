@@ -9,7 +9,7 @@ export const metadata: Metadata = {
       openGraph: {
       title: "Chi Siamo - X2M Creative",
       description: "Scopri la storia di X2M Creative: agenzia creativa italiana specializzata in branding, social media strategy, video making e advertisement.",
-    url: "https://x2m-creative.vercel.app/about",
+    url: "https://www.x2mcreative.com/about",
     type: "website",
     images: [
       {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ["/img/X2M.png"],
   },
   alternates: {
-    canonical: "https://x2m-creative.vercel.app/about",
+    canonical: "https://www.x2mcreative.com/about",
   },
 };
 
@@ -39,13 +39,13 @@ export default function AboutPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://x2m-creative.vercel.app"
+        "item": "https://www.x2mcreative.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Chi Siamo",
-        "item": "https://x2m-creative.vercel.app/about"
+        "item": "https://www.x2mcreative.com/about"
       }
     ]
   };
@@ -55,15 +55,15 @@ export default function AboutPage() {
     "@type": "AboutPage",
                 "name": "Chi Siamo - X2M Creative",
             "description": "Pagina informativa su X2M Creative: la nostra storia, missione e approccio al brand growth attraverso creatività e strategia",
-    "url": "https://x2m-creative.vercel.app/about",
+    "url": "https://www.x2mcreative.com/about",
     "mainEntity": {
       "@type": "Organization",
-      "@id": "https://x2m-creative.vercel.app/#organization"
+      "@id": "https://www.x2mcreative.com/#organization"
     },
     "isPartOf": {
       "@type": "WebSite",
                     "name": "X2M Creative",
-      "url": "https://x2m-creative.vercel.app"
+      "url": "https://www.x2mcreative.com"
     }
   };
 
@@ -108,7 +108,7 @@ export default function AboutPage() {
 
             <article className="space-y-16" itemScope itemType="https://schema.org/Organization">
               <meta itemProp="name" content="X2M Creative" />
-              <meta itemProp="url" content="https://x2m-creative.vercel.app" />
+              <meta itemProp="url" content="https://www.x2mcreative.com" />
               <meta itemProp="foundingDate" content="2024" />
               <meta itemProp="areaServed" content="Italy" />
               

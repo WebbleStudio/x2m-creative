@@ -42,7 +42,7 @@ export const   metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'it_IT',
-    url: 'https://x2m-creative.vercel.app',
+    url: 'https://www.x2mcreative.com',
     siteName: 'X2M Creative',
     title: 'X2M Creative - Creatività e Strategia per la Crescita del Tuo Brand',
     description: 'X2M Creative combina creatività e strategia per far crescere il tuo brand in modo misurabile. Servizi di branding, social media strategy, video making e advertisement.',
@@ -64,7 +64,7 @@ export const   metadata: Metadata = {
     images: ['/img/X2M.png'],
   },
   alternates: {
-    canonical: 'https://x2m-creative.vercel.app',
+    canonical: 'https://www.x2mcreative.com',
   },
   category: 'business',
   classification: 'Creative Agency',
@@ -80,7 +80,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="it" className={`${raleway.variable} ${instrument_serif.variable}`}>
       <head>
-        <link rel="canonical" href="https://x2m-creative.vercel.app" />
+        <link rel="canonical" href="https://www.x2mcreative.com" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />

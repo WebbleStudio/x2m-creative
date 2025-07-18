@@ -14,7 +14,7 @@ Disallow: /api/
 Disallow: /uploads/
 
 # Sitemap location
-Sitemap: https://x2m-creative.vercel.app/sitemap.xml
+Sitemap: https://www.x2mcreative.com/sitemap.xml
 
 # Crawl delay
 Crawl-delay: 1 

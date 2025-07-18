@@ -10,17 +10,17 @@ export default function HomePage() {
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://x2m-creative.vercel.app/#organization",
+    "@id": "https://www.x2mcreative.com/#organization",
     "name": "X2M Creative",
     "alternateName": "X2M",
-    "url": "https://x2m-creative.vercel.app",
+    "url": "https://www.x2mcreative.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://x2m-creative.vercel.app/img/X2M.png",
+      "url": "https://www.x2mcreative.com/img/X2M.png",
       "width": 400,
       "height": 400
     },
-    "image": "https://x2m-creative.vercel.app/img/X2M.png",
+    "image": "https://www.x2mcreative.com/img/X2M.png",
                 "description": "X2M Creative combina creatività e strategia per far crescere il tuo brand in modo misurabile. Agenzia creativa specializzata in branding, social media strategy, video making e advertisement.",
     "foundingDate": "2024",
     "address": {
@@ -57,17 +57,17 @@ export default function HomePage() {
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://x2m-creative.vercel.app/#website",
-    "url": "https://x2m-creative.vercel.app",
+    "@id": "https://www.x2mcreative.com/#website",
+    "url": "https://www.x2mcreative.com",
     "name": "X2M Creative",
     "description": "Agenzia creativa specializzata in branding, social media strategy, video making e advertisement per la crescita del brand",
     "publisher": {
-      "@id": "https://x2m-creative.vercel.app/#organization"
+      "@id": "https://www.x2mcreative.com/#organization"
     },
     "inLanguage": "it-IT",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://x2m-creative.vercel.app/?s={search_term_string}",
+      "target": "https://www.x2mcreative.com/?s={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
@@ -77,7 +77,7 @@ export default function HomePage() {
     "@type": "Service",
                   "name": "Servizi Creativi X2M",
     "provider": {
-      "@id": "https://x2m-creative.vercel.app/#organization"
+      "@id": "https://www.x2mcreative.com/#organization"
     },
     "serviceType": "Creative Agency Services",
     "description": "Servizi di agenzia creativa comprensivi di branding, social media strategy, video making e advertisement per far crescere il tuo brand",

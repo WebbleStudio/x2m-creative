@@ -9,7 +9,7 @@ export const metadata: Metadata = {
       openGraph: {
       title: "Portfolio e Progetti - X2M Creative",
           description: "Scopri i progetti creativi di X2M Creative: branding, social media strategy, video making e advertisement per brand che vogliono distinguersi.",
-    url: "https://x2m-creative.vercel.app/progetti",
+    url: "https://www.x2mcreative.com/progetti",
     type: "website",
     images: [
       {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ["/img/X2M.png"],
   },
   alternates: {
-    canonical: "https://x2m-creative.vercel.app/progetti",
+    canonical: "https://www.x2mcreative.com/progetti",
   },
 };
 
@@ -42,16 +42,8 @@ interface Progetto {
 }
 
 async function getProgetti(): Promise<Progetto[]> {
-  // Costruisci URL dinamicamente per produzione/sviluppo
-  const baseUrl = process.env.NODE_ENV === 'production' 
-    ? (process.env.NEXT_PUBLIC_SITE_URL || 'https://x2m-creative.vercel.app')
-    : 'http://localhost:3000';
-    
-  const apiUrl = process.env.NODE_ENV === 'production' && typeof window === 'undefined'
-    ? `${baseUrl}/api/progetti`  // Server-side in produzione
-    : '/api/progetti';           // Client-side o sviluppo locale
-    
-  const res = await fetch(apiUrl, { 
+  // Usa sempre URL relativi per evitare problemi di mixed content
+  const res = await fetch('/api/progetti', { 
     cache: 'no-store' 
   });
   if (!res.ok) return [];
@@ -71,13 +63,13 @@ export default async function ProgettiPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://x2m-creative.vercel.app"
+        "item": "https://www.x2mcreative.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Portfolio",
-        "item": "https://x2m-creative.vercel.app/progetti"
+        "item": "https://www.x2mcreative.com/progetti"
       }
     ]
   };
@@ -87,7 +79,7 @@ export default async function ProgettiPage() {
     "@type": "CollectionPage",
                 "name": "Portfolio X2M Creative",
             "description": "Portfolio completo dei progetti creativi realizzati da X2M Creative: branding, social media strategy, video making e advertisement",
-    "url": "https://x2m-creative.vercel.app/progetti",
+    "url": "https://www.x2mcreative.com/progetti",
     "mainEntity": {
       "@type": "ItemList",
       "numberOfItems": visibili.length,
@@ -100,7 +92,7 @@ export default async function ProgettiPage() {
           "@type": "Organization",
           "name": "X2M Creative"
         },
-        "image": progetto.immagine ? `https://x2m-creative.vercel.app${progetto.immagine}` : undefined,
+        "image": progetto.immagine ? `https://www.x2mcreative.com${progetto.immagine}` : undefined,
         "url": progetto.link,
         "dateCreated": progetto.created_at
       }))
@@ -108,7 +100,7 @@ export default async function ProgettiPage() {
     "isPartOf": {
       "@type": "WebSite",
               "name": "X2M Creative",
-      "url": "https://x2m-creative.vercel.app"
+      "url": "https://www.x2mcreative.com"
     }
   };
 

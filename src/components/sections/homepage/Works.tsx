@@ -12,16 +12,8 @@ interface Progetto {
 }
 
 async function getProgettiInEvidenza(): Promise<Progetto[]> {
-  // Costruisci URL dinamicamente per produzione/sviluppo
-  const baseUrl = process.env.NODE_ENV === 'production' 
-    ? (process.env.NEXT_PUBLIC_SITE_URL || 'https://x2m-creative.vercel.app')
-    : 'http://localhost:3000';
-    
-  const apiUrl = process.env.NODE_ENV === 'production' && typeof window === 'undefined'
-    ? `${baseUrl}/api/progetti`  // Server-side in produzione
-    : '/api/progetti';           // Client-side o sviluppo locale
-    
-  const res = await fetch(apiUrl, { 
+  // Usa sempre URL relativi per evitare problemi di mixed content
+  const res = await fetch('/api/progetti', { 
     cache: 'no-store' 
   });
   if (!res.ok) return [];
