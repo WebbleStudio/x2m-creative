@@ -22,16 +22,15 @@ export function getApiUrl(endpoint: string): string {
     host = `http://localhost:${port}`;
     console.log('🔧 Sviluppo locale SSR: usando', `${host}${endpoint}`);
   } else {
-    // PRODUZIONE: determina l'URL assoluto corretto
-    if (process.env.VERCEL_URL) {
-      // Su Vercel, usa sempre HTTPS per VERCEL_URL
-      host = `https://${process.env.VERCEL_URL}`;
-    } else if (process.env.NEXTAUTH_URL) {
-      // URL configurato dall'utente (per produzione)
+    // PRODUZIONE: usa sempre il dominio personalizzato configurato
+    if (process.env.NEXTAUTH_URL) {
+      // URL configurato dall'utente (priorità massima)
       host = process.env.NEXTAUTH_URL;
+      console.log('🔧 Produzione SSR: usando NEXTAUTH_URL', `${host}${endpoint}`);
     } else {
       // Fallback sicuro per produzione
       host = 'https://www.x2mcreative.com';
+      console.log('🔧 Produzione SSR: usando fallback', `${host}${endpoint}`);
     }
   }
     
