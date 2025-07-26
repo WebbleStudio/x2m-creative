@@ -1,5 +1,5 @@
-import StackingCards from '@/components/animations/transitions/StackingCards';
-import React from 'react';
+import StackingCards from "@/components/animations/transitions/StackingCards";
+import React from "react";
 
 interface Progetto {
   id: string;
@@ -13,32 +13,32 @@ interface Progetto {
 
 async function getProgettiInEvidenza(): Promise<Progetto[]> {
   // Importa l'utility per URL API sicuri
-  const { getApiUrl } = await import('@/lib/utils/api');
-  
+  const { getApiUrl } = await import("@/lib/utils/api");
+
   try {
-    const apiUrl = getApiUrl('/api/progetti');
+    const apiUrl = getApiUrl("/api/progetti");
     const timestamp = Date.now();
     const urlWithTimestamp = `${apiUrl}?t=${timestamp}`;
-    
-    console.log('🔧 Fetching progetti from:', urlWithTimestamp);
-    
-    const res = await fetch(urlWithTimestamp, { 
-      cache: 'no-store',
+
+    console.log("🔧 Fetching progetti from:", urlWithTimestamp);
+
+    const res = await fetch(urlWithTimestamp, {
+      cache: "no-store",
       headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0'
-      }
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        Pragma: "no-cache",
+        Expires: "0",
+      },
     });
-    
+
     if (!res.ok) {
       throw new Error(`API Error: ${res.status}`);
     }
-    
+
     const progetti = await res.json();
     return progetti.filter((p: Progetto) => p.in_evidenza).slice(0, 3);
   } catch (error) {
-    console.error('Errore caricamento progetti in evidenza:', error);
+    console.error("Errore caricamento progetti in evidenza:", error);
     return []; // Fallback sicuro
   }
 }
@@ -54,7 +54,22 @@ export default async function Works() {
 
   return (
     <section className="relative w-full min-h-[700px] md:min-h-[800px] lg:min-h-[850px] xl:min-h-[900px] bg-main-black flex flex-col items-center justify-center overflow-hidden py-16">
-      <StackingCards cards={cards} heightClass="h-[220px] sm:h-[320px] md:h-[400px] 2xl:h-[480px]" />
+      {/* Titolo della sezione */}
+      <header className="w-full px-5 text-center mb-8">
+        <h2 className="mb-6 font-degular-display leading-tight">
+          <span className="block font-raleway font-medium text-[30px] md:text-[36px] 2xl:text-[45px] text-main-white">
+            Esplora i
+          </span>
+          <span className="block font-instrument-serif italic text-[30px] md:text-[36px] 2xl:text-[45px] text-main-white">
+            Nostri Lavori
+          </span>
+        </h2>
+      </header>
+
+      <StackingCards
+        cards={cards}
+        heightClass="h-[220px] sm:h-[320px] md:h-[400px] 2xl:h-[480px]"
+      />
       <div className="flex justify-center mt-16">
         <a
           href="/progetti"
@@ -65,4 +80,4 @@ export default async function Works() {
       </div>
     </section>
   );
-} 
+}

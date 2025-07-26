@@ -230,7 +230,7 @@ export default function StackingCards({ cards, height = "250px", heightClass }: 
                 ...getCardAnimation(index),
               }}
               onClick={handleCardClick}
-              whileHover={{ scale: index === 0 ? 1.02 : undefined }}
+              whileHover={{ scale: index === 0 ? 0.98 : undefined }}
               whileTap={{ scale: index === 0 ? 0.98 : undefined }}
             >
               <div className="flex flex-col items-start justify-start w-full h-full p-6 bg-gradient-to-b from-black/60 via-black/30 to-transparent rounded-[30px]">
@@ -308,7 +308,7 @@ export default function StackingCards({ cards, height = "250px", heightClass }: 
               }}
               onClick={index === 0 ? undefined : (index === 1 ? handleRotateNext : handleRotatePrevious)}
               whileHover={{ 
-                scale: index === 0 ? 1.02 : 0.85,
+                scale: index === 0 ? 0.98 : 0.85,
                 transition: { duration: 0.2 }
               }}
             >

@@ -9,7 +9,10 @@ interface HeroProps {
   quote?: string;
   author?: string;
   title: {
-    firstLine: string;
+    firstLine: string | {
+      main: string;
+      suffix?: string;
+    };
     secondLine?: {
       text: string;
       gradient?: boolean;
@@ -179,15 +182,36 @@ export default function Hero({
             </div>
           )}
           <h1 className="text-[62px] sm:text-[72px] md:text-[84px] lg:text-[96px] xl:text-[110px] 2xl:text-[130px] leading-[1.1em] font-degular-display font-semibold">
-            <span className="relative inline-block px-2 align-middle">
-              {!noBgBox && (
-                <div 
-                  className="absolute inset-0 bg-creative-blue rounded-[15px] -z-10 animate-tilt-in" 
-                  aria-hidden="true"
-                ></div>
-              )}
-              <span className={`relative ${noBgBox ? "text-main-black" : "text-main-white"}`}>{title.firstLine}</span>
-            </span>
+            {typeof title.firstLine === 'string' ? (
+              <span className="relative inline-block px-2 align-middle">
+                {!noBgBox && (
+                  <div 
+                    className="absolute inset-0 bg-creative-blue rounded-[15px] -z-10 animate-tilt-in" 
+                    aria-hidden="true"
+                  ></div>
+                )}
+                <span className={`relative ${noBgBox ? "text-main-black" : "text-main-white"}`}>{title.firstLine}</span>
+              </span>
+            ) : (
+              <>
+                <span className="relative inline-block px-2 align-middle">
+                  {!noBgBox && (
+                    <div 
+                      className="absolute inset-0 bg-creative-blue rounded-[15px] -z-10 animate-tilt-in" 
+                      aria-hidden="true"
+                    ></div>
+                  )}
+                  <span className={`relative ${noBgBox ? "text-main-black" : "text-main-white"}`}>{title.firstLine.main}</span>
+                </span>
+                {title.firstLine.suffix && (
+                  <FadeUp trigger="mount" delay={0.75} duration={0.8} distance={40} className="inline-block">
+                    <span className="font-degular-display font-semibold text-main-black ml-3 align-middle">
+                      {title.firstLine.suffix}
+                    </span>
+                  </FadeUp>
+                )}
+              </>
+            )}
 
             {title.secondLine && (
               <>
@@ -196,13 +220,13 @@ export default function Hero({
                   /* Mobile/tablet: Intelligence e Having fun separati */
                   <>
                     <span className="flex flex-col items-center lg:hidden">
-                      <FadeUp trigger="mount" delay={2.5} duration={0.8} distance={40} className="inline-block">
+                      <FadeUp trigger="mount" delay={1.5} duration={0.8} distance={40} className="inline-block">
                         <span className="font-sprat font-medium text-[57px] sm:text-[64px] md:text-[74px] xl:text-[100px] 2xl:text-[120px] bg-gradient-to-r from-[#254454] to-creative-blue bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-text tracking-[-3.5px]">
                           {title.secondLine.text.split(' ')[0]}
                         </span>
                       </FadeUp>
                       {title.thirdLine && (
-                        <FadeUp trigger="mount" delay={3.0} duration={0.8} distance={40} className="inline-block" style={{marginTop: '-0.2em'}}>
+                        <FadeUp trigger="mount" delay={2.25} duration={0.8} distance={40} className="inline-block" style={{marginTop: '-0.2em'}}>
                           <span className="font-degular-display font-semibold text-main-black xl:text-[100px] 2xl:text-[120px]">
                             {title.thirdLine}
                           </span>
@@ -211,14 +235,16 @@ export default function Hero({
                     </span>
 
                     {/* Desktop: Intelligence Having fun insieme, ma solo Intelligence ha il gradiente */}
-                    <FadeUp trigger="mount" delay={2.5} duration={0.8} distance={40} className="hidden lg:inline">
+                    <FadeUp trigger="mount" delay={1.5} duration={0.8} distance={40} className="hidden lg:inline">
                       <span className="font-sprat font-medium lg:text-[84px] xl:text-[100px] 2xl:text-[120px] bg-gradient-to-r from-[#254454] to-creative-blue bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-text tracking-[-3.5px]">
                         {title.secondLine.text.split(' ')[0]}
                       </span>
                       {title.thirdLine && (
-                        <span className="font-degular-display font-semibold lg:text-[84px] xl:text-[100px] 2xl:text-[120px] text-main-black ml-3 align-middle">
-                          {title.thirdLine}
-                        </span>
+                        <FadeUp trigger="mount" delay={2.25} duration={0.8} distance={40} className="inline-block">
+                          <span className="font-degular-display font-semibold lg:text-[84px] xl:text-[100px] 2xl:text-[120px] text-main-black ml-3 align-middle">
+                            {title.thirdLine}
+                          </span>
+                        </FadeUp>
                       )}
                     </FadeUp>
                   </>

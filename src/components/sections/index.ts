@@ -1,5 +1,6 @@
 // Homepage sections
 export { default as Hero } from './homepage/Hero';
+export { default as PartnersSlider } from './homepage/PartnersSlider';
 export { default as Services } from './homepage/Services';
 export { default as Vision } from './homepage/Vision';
 export { default as Works } from './homepage/Works';

@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:3001": "NEXT_PUBLIC_PORT=3001 next dev -p 3001",
+    "dev:3002": "NEXT_PUBLIC_PORT=3002 next dev -p 3002",
+    "dev:port": "echo 'Usage: npm run dev:port -- --port=3001' && next dev",
     "build": "next build --no-lint",
     "build:vercel": "next build --no-lint",
     "start": "next start",

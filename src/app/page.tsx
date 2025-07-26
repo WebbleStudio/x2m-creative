@@ -1,5 +1,6 @@
 import Contact from "@/components/sections/homepage/Contact";
 import Hero from "@/components/sections/homepage/Hero";
+import PartnersSlider from "@/components/sections/homepage/PartnersSlider";
 import Services from "@/components/sections/homepage/Services";
 import Vision from "@/components/sections/homepage/Vision";
 import Works from "@/components/sections/homepage/Works";
@@ -155,7 +156,10 @@ export default function HomePage() {
           quote={undefined}
           author="Albert Einstein"
           title={{
-            firstLine: "Creativity",
+            firstLine: {
+              main: "Creativity",
+              suffix: "is"
+            },
             secondLine: {
               text: "Intelligence",
               gradient: true
@@ -164,6 +168,7 @@ export default function HomePage() {
           }}
           showScrollIndicator={true}
         />
+        <PartnersSlider />
         <Vision />
         <div className="w-full px-[15px] sm:px-5 md:px-[30px]">
           <div className="w-full max-w-[1300px] 2xl:max-w-[1650px] mx-auto">

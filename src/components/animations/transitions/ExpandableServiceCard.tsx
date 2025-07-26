@@ -285,7 +285,7 @@ export default function ExpandableServiceCard({
                       {/* Colonna destra */}
                       <div className="flex-1 rounded-lg flex items-center md:items-start lg:items-start justify-center">
                         <img 
-                          src="/img/video-making-marco.png" 
+                          src="/img/video-making-marco.webp" 
                           alt="Video Making Marco" 
                           className="max-w-full max-h-full sm:mt-[18px] md:max-w-[95%] md:max-h-[95%] md:mt-4 lg:w-[348px] lg:h-[248px] object-contain rounded-lg"
                         />
@@ -355,7 +355,7 @@ export default function ExpandableServiceCard({
                       {/* Colonna destra */}
                       <div className="flex-1 rounded-lg flex items-center md:items-start lg:items-start justify-center">
                         <img 
-                          src="/img/social-media-marco.png" 
+                          src="/img/social-media-marco.webp" 
                           alt="Social Media Marco" 
                           className="max-w-full max-h-full sm:mt-[18px] md:max-w-[95%] md:max-h-[95%] md:mt-4 lg:w-[348px] lg:h-[248px] object-contain rounded-lg"
                         />
@@ -425,7 +425,7 @@ export default function ExpandableServiceCard({
                       {/* Colonna destra */}
                       <div className="flex-1 rounded-lg flex items-center md:items-start lg:items-start justify-center">
                         <img 
-                          src="/img/branding-marco.png" 
+                          src="/img/branding-marco.webp" 
                           alt="Branding Marco" 
                           className="max-w-full max-h-full sm:mt-[18px] md:max-w-[95%] md:max-h-[95%] md:mt-4 lg:w-[348px] lg:h-[248px] object-contain rounded-lg"
                         />

@@ -1,14 +1,17 @@
 # 🛠️ CONFIGURAZIONE SITO X2M CREATIVE
 
 ## ✅ AGGIORNAMENTO: ERRORI TECNICI RISOLTI
+
 I problemi di Server Components e mixed content HTTPS sono stati **completamente risolti**!
 
 ## ❌ RIMANE DA FARE
+
 Il sito è temporaneamente **non funzionante** solo perché mancano le configurazioni del database Supabase.
 
 ## ✅ SOLUZIONE RAPIDA
 
 ### 1. Crea il file `.env.local`
+
 Nella cartella principale del progetto, crea un file chiamato `.env.local` con questo contenuto:
 
 ```env
@@ -26,18 +29,20 @@ NODE_ENV=production
 ```
 
 ### 2. Sostituisci i Placeholder
+
 **IMPORTANTE**: Devi sostituire questi valori con quelli reali del tuo progetto Supabase:
 
-- `SUPABASE_URL` → Il tuo URL Supabase 
+- `SUPABASE_URL` → Il tuo URL Supabase
 - `SUPABASE_ANON_KEY` → La tua chiave anonima
 - `SUPABASE_SERVICE_KEY` → La tua chiave di servizio
 - `NEXTAUTH_SECRET` → Una stringa random di almeno 32 caratteri
 
 ### 3. Configura su Vercel
+
 Nel dashboard Vercel, vai su **Settings** → **Environment Variables** e aggiungi:
 
 - `SUPABASE_URL`
-- `SUPABASE_ANON_KEY` 
+- `SUPABASE_ANON_KEY`
 - `SUPABASE_SERVICE_KEY`
 - `NEXTAUTH_SECRET`
 - `NEXTAUTH_URL=https://www.x2mcreative.com`
@@ -59,6 +64,7 @@ Genera una chiave random da qui: [generate-secret.vercel.app](https://generate-s
 ## ✅ DOPO LA CONFIGURAZIONE
 
 Il sito dovrebbe:
+
 - ✅ Non più mostrare errori di configurazione
 - ✅ Caricare correttamente la homepage
 - ✅ Mostrare i progetti (se presenti nel database)
@@ -68,6 +74,7 @@ Il sito dovrebbe:
 ## 🆘 PROBLEMI?
 
 Se continua a non funzionare:
+
 1. Verifica che le variabili siano scritte correttamente
 2. Controlla che non ci siano spazi extra
 3. Riavvia Vercel deploy
@@ -75,4 +82,43 @@ Se continua a non funzionare:
 
 ---
 
-**⚠️ Il sito NON funzionerà finché non configuri queste variabili!** 
+## 🔧 CONFIGURAZIONE PORTE (Sviluppo)
+
+Se hai bisogno di avviare il server su una porta diversa dalla 3000 (ad esempio se è già occupata):
+
+### Opzione 1: Script Predefiniti
+
+```bash
+# Avvia sulla porta 3001
+npm run dev:3001
+
+# Avvia sulla porta 3002
+npm run dev:3002
+```
+
+### Opzione 2: Porta Personalizzata
+
+```bash
+# Imposta la porta manualmente
+NEXT_PUBLIC_PORT=3001 npm run dev -- -p 3001
+```
+
+### Opzione 3: Variabile d'Ambiente
+
+Aggiungi al tuo `.env.local`:
+
+```env
+NEXT_PUBLIC_PORT=3001
+```
+
+Poi avvia normalmente:
+
+```bash
+npm run dev -- -p 3001
+```
+
+**Nota**: Il sistema ora rileva automaticamente la porta in uso e funziona su qualsiasi porta configurata.
+
+---
+
+**⚠️ Il sito NON funzionerà finché non configuri queste variabili!**

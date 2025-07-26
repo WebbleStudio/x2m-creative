@@ -49,7 +49,7 @@ export default function Contact() {
           
           {/* Box email nella parte bassa - nascosto su lg */}
           <form 
-            action="https://formspree.io/f/xblkjlwv" 
+            action="https://formspree.io/f/xovlqnzw" 
             method="POST" 
             className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[90%] block lg:hidden"
             aria-label="Form di contatto mobile"
@@ -87,7 +87,7 @@ export default function Contact() {
               Inserisci la tua mail. Ti contatteremo al più presto per offrirti una consulenza personalizzata.
             </p>
             <form 
-              action="https://formspree.io/f/xblkjlwv" 
+              action="https://formspree.io/f/xovlqnzw" 
               method="POST" 
               className="w-full"
               aria-label="Form di contatto desktop"
