@@ -12,16 +12,16 @@
   "scope": "/",
   "icons": [
     {
-      "src": "/img/X2M.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "src": "/img/icons/favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon",
+      "purpose": "any"
     },
     {
-      "src": "/img/X2M.png", 
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
+      "src": "/img/icons/favicon.ico",
+      "sizes": "64x64 128x128 256x256",
+      "type": "image/x-icon",
+      "purpose": "any maskable"
     }
   ]
-} 
+}
