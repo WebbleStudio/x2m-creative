@@ -18,7 +18,12 @@ async function getProgettiInEvidenza(): Promise<Progetto[]> {
   try {
     const apiUrl = getApiUrl('/api/progetti');
     const res = await fetch(apiUrl, { 
-      cache: 'no-store' 
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+      }
     });
     
     if (!res.ok) {
