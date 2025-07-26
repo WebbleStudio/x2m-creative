@@ -105,8 +105,8 @@ Se vuoi testare localmente con PostgreSQL:
 ## ⚡ Funzionalità Post-Deploy
 
 Dopo il deploy su Vercel con dominio personalizzato:
-- ✅ Admin dashboard: `https://x2mcreative.com/admin/login`
-- ✅ API progetti: `https://x2mcreative.com/api/progetti`
+- ✅ Admin dashboard: `https://www.x2mcreative.com/admin/login`
+- ✅ API progetti: `https://www.x2mcreative.com/api/progetti`
 - ✅ Upload immagini: Supabase Storage
 - ✅ Database: Supabase PostgreSQL
 
@@ -119,7 +119,7 @@ Dopo il deploy su Vercel con dominio personalizzato:
 
 2. **Aggiorna NEXTAUTH_URL**:
    ```env
-   NEXTAUTH_URL=https://x2mcreative.com
+   NEXTAUTH_URL=https://www.x2mcreative.com
    ```
 
 3. **Verifica CORS/CSP**: Il dominio personalizzato è già configurato nel next.config.ts
@@ -128,13 +128,13 @@ Dopo il deploy su Vercel con dominio personalizzato:
 
 ### Dominio Personalizzato Non Funziona
 - ✅ Verifica DNS: `dig x2mcreative.com` dovrebbe puntare a Vercel
-- ✅ Controlla che `NEXTAUTH_URL=https://x2mcreative.com` sia impostato su Vercel
+- ✅ Controlla che `NEXTAUTH_URL=https://www.x2mcreative.com` sia impostato su Vercel
 - ✅ Assicurati che il dominio sia verificato nel dashboard Vercel
 - ✅ Aspetta fino a 24h per la propagazione DNS
 
 ### Errori API in Produzione
 - ✅ Controlla che `SUPABASE_URL` e `SUPABASE_ANON_KEY` siano configurati
-- ✅ Verifica che le API Routes siano accessibili su `https://x2mcreative.com/api/progetti`
+- ✅ Verifica che le API Routes siano accessibili su `https://www.x2mcreative.com/api/progetti`
 
 ### Login Non Funziona
 - ✅ Assicurati che `NEXTAUTH_SECRET` sia impostato su Vercel
@@ -157,7 +157,7 @@ Prima di fare il deploy su Vercel con `x2mcreative.com`:
 - [ ] `SUPABASE_ANON_KEY` - Chiave pubblica Supabase  
 - [ ] `SUPABASE_SERVICE_KEY` - Chiave privata Supabase (opzionale)
 - [ ] `NEXTAUTH_SECRET` - Chiave segreta per NextAuth
-- [ ] `NEXTAUTH_URL=https://x2mcreative.com` - URL del dominio personalizzato
+- [ ] `NEXTAUTH_URL=https://www.x2mcreative.com` - URL del dominio personalizzato
 
 ### Supabase Database
 - [ ] Tabella `users` esistente con utente admin

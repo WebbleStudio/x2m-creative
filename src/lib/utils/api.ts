@@ -31,7 +31,7 @@ export function getApiUrl(endpoint: string): string {
       host = process.env.NEXTAUTH_URL;
     } else {
       // Fallback sicuro per produzione
-      host = 'https://x2mcreative.com';
+      host = 'https://www.x2mcreative.com';
     }
   }
     
