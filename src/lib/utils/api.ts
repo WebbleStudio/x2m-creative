@@ -13,23 +13,26 @@ export function getApiUrl(endpoint: string): string {
     return endpoint;
   }
   
-  // Server-side: determina l'URL base
-  const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
-  
+  // SERVER-SIDE: determina l'URL assoluto corretto
   let host: string;
-  if (process.env.VERCEL_URL) {
-    // Su Vercel, usa sempre HTTPS per VERCEL_URL
-    host = `https://${process.env.VERCEL_URL}`;
-  } else if (process.env.NEXTAUTH_URL) {
-    // URL configurato dall'utente
-    host = process.env.NEXTAUTH_URL;
-  } else if (process.env.NODE_ENV === 'production') {
-    // Fallback sicuro per produzione
-    host = 'https://www.x2mcreative.com';
+  
+  if (process.env.NODE_ENV !== 'production') {
+    // Sviluppo locale: usa localhost con porta dinamica
+    const port = process.env.PORT || '3000';
+    host = `http://localhost:${port}`;
+    console.log('🔧 Sviluppo locale SSR: usando', `${host}${endpoint}`);
   } else {
-    // Sviluppo locale - usa URL relativo sicuro
-    console.warn('⚠️ Sviluppo locale: usando URL relativi per API');
-    return endpoint; // Usa URL relativi in sviluppo
+    // PRODUZIONE: determina l'URL assoluto corretto
+    if (process.env.VERCEL_URL) {
+      // Su Vercel, usa sempre HTTPS per VERCEL_URL
+      host = `https://${process.env.VERCEL_URL}`;
+    } else if (process.env.NEXTAUTH_URL) {
+      // URL configurato dall'utente (per produzione)
+      host = process.env.NEXTAUTH_URL;
+    } else {
+      // Fallback sicuro per produzione
+      host = 'https://x2mcreative.com';
+    }
   }
     
   return `${host}${endpoint}`;

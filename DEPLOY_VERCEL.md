@@ -22,9 +22,16 @@ Il progetto è ora **compatibile con Vercel**! Sono state fatte le seguenti modi
 Nel dashboard Vercel, vai su **Settings** → **Environment Variables** e aggiungi:
 
 ```env
-DATABASE_URL=postgresql://[URL_FORNITO_DA_VERCEL]
+# Database Supabase (NON Vercel Postgres)
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_KEY=your-service-key
+
+# Autenticazione
 NEXTAUTH_SECRET=your-super-secret-key-here
-NEXTAUTH_URL=https://your-app.vercel.app
+NEXTAUTH_URL=https://x2mcreative.com
+
+# Upload (se usi Vercel Blob invece di Supabase Storage)
 BLOB_READ_WRITE_TOKEN=[TOKEN_BLOB_VERCEL]
 ```
 
@@ -97,24 +104,71 @@ Se vuoi testare localmente con PostgreSQL:
 
 ## ⚡ Funzionalità Post-Deploy
 
-Dopo il deploy su Vercel:
-- ✅ Admin dashboard: `https://your-app.vercel.app/admin/login`
-- ✅ API progetti: `https://your-app.vercel.app/api/progetti`
-- ✅ Upload immagini: Vercel Blob (automatico)
-- ✅ Database: PostgreSQL Vercel (automatico)
+Dopo il deploy su Vercel con dominio personalizzato:
+- ✅ Admin dashboard: `https://x2mcreative.com/admin/login`
+- ✅ API progetti: `https://x2mcreative.com/api/progetti`
+- ✅ Upload immagini: Supabase Storage
+- ✅ Database: Supabase PostgreSQL
+
+## 🌐 Configurazione Dominio Personalizzato
+
+1. **Su Vercel Dashboard**:
+   - Vai su **Settings** → **Domains**
+   - Aggiungi `x2mcreative.com` e `www.x2mcreative.com`
+   - Configura i DNS secondo le indicazioni Vercel
+
+2. **Aggiorna NEXTAUTH_URL**:
+   ```env
+   NEXTAUTH_URL=https://x2mcreative.com
+   ```
+
+3. **Verifica CORS/CSP**: Il dominio personalizzato è già configurato nel next.config.ts
 
 ## 🐛 Troubleshooting
 
-### Build Error: "DATABASE_URL not found"
-- Assicurati di aver configurato le env variables su Vercel
+### Dominio Personalizzato Non Funziona
+- ✅ Verifica DNS: `dig x2mcreative.com` dovrebbe puntare a Vercel
+- ✅ Controlla che `NEXTAUTH_URL=https://x2mcreative.com` sia impostato su Vercel
+- ✅ Assicurati che il dominio sia verificato nel dashboard Vercel
+- ✅ Aspetta fino a 24h per la propagazione DNS
+
+### Errori API in Produzione
+- ✅ Controlla che `SUPABASE_URL` e `SUPABASE_ANON_KEY` siano configurati
+- ✅ Verifica che le API Routes siano accessibili su `https://x2mcreative.com/api/progetti`
+
+### Login Non Funziona
+- ✅ Assicurati che `NEXTAUTH_SECRET` sia impostato su Vercel
+- ✅ Verifica che l'utente admin esista nella tabella Supabase `users`
+- ✅ Controlla che `NEXTAUTH_URL` corrisponda al dominio attuale
+
+### Build Error: "SUPABASE_URL not found"
+- Assicurati di aver configurato le env variables Supabase su Vercel
 
 ### Upload Error: "BLOB_READ_WRITE_TOKEN"
-- Vai su Vercel Storage → Blob → Copia il token
+- Vai su Vercel Storage → Blob → Copia il token (se usi Vercel Blob)
+- Oppure configura Supabase Storage
 
-### Migration Error
-- Controlla che DATABASE_URL sia PostgreSQL valido
-- Verifica che il database sia accessibile
+## ✅ Checklist Pre-Deploy
+
+Prima di fare il deploy su Vercel con `x2mcreative.com`:
+
+### Variabili d'Ambiente su Vercel
+- [ ] `SUPABASE_URL` - URL del progetto Supabase
+- [ ] `SUPABASE_ANON_KEY` - Chiave pubblica Supabase  
+- [ ] `SUPABASE_SERVICE_KEY` - Chiave privata Supabase (opzionale)
+- [ ] `NEXTAUTH_SECRET` - Chiave segreta per NextAuth
+- [ ] `NEXTAUTH_URL=https://x2mcreative.com` - URL del dominio personalizzato
+
+### Supabase Database
+- [ ] Tabella `users` esistente con utente admin
+- [ ] Tabella `progetti` esistente (se hai progetti)
+- [ ] Configurazione RLS corretta per le tabelle
+
+### Vercel Dashboard
+- [ ] Dominio `x2mcreative.com` aggiunto e verificato
+- [ ] DNS configurato correttamente
+- [ ] Build e deployment completati senza errori
 
 ---
 
-**🎉 Il tuo progetto è ora pronto per Vercel!** 
+**🎉 Il tuo progetto è ora pronto per Vercel con x2mcreative.com!** 

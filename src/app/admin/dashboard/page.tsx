@@ -68,9 +68,9 @@ function DashboardContent() {
   async function fetchProgetti() {
     setLoading(true);
     try {
-      const res = await fetch(getApiUrl("/api/progetti"));
-      const data = await res.json();
-      setProgetti(data);
+    const res = await fetch(getApiUrl("/api/progetti"));
+    const data = await res.json();
+    setProgetti(data);
     } catch (error) {
       console.error('Errore caricamento progetti dashboard:', error);
       setProgetti([]);
